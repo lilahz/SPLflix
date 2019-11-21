@@ -1,0 +1,4 @@
+#Git ignore file
+
+cmake-build-debug
+CMakeLists.txt

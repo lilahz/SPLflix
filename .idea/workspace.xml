@@ -11,7 +11,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="" />
+    <list default="true" id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="try 1">
+      <change beforePath="$PROJECT_DIR$/.idea/SPLflix.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.h" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +33,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1TpjlA5wCRr6lo7D1EBwMPKJbMd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="settings.editor.selected.configurable" value="language.cpp.clang-tidy" />
   </component>
   <component name="RecentsManager">
@@ -81,6 +97,7 @@
       <workItem from="1574256842501" duration="29000" />
       <workItem from="1574256951651" duration="49000" />
       <workItem from="1574257002727" duration="15441000" />
+      <workItem from="1574331903948" duration="2443000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>
@@ -89,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574169569936</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="try 1">
+      <created>1574333553152</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574333553152</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +133,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update new project files" />
     <MESSAGE value="try 1" />
     <option name="LAST_COMMIT_MESSAGE" value="try 1" />
   </component>
