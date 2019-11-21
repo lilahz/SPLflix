@@ -10,6 +10,7 @@ int main(int argc, char** argv){
 		return 0;
 	}
 	Session s("../config1.json");
-//	s.start();
-	return 0;
+	s.start();
+
+
 }

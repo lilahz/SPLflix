@@ -123,6 +123,33 @@ SPLflix/fast:
 	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/build
 .PHONY : SPLflix/fast
 
+src/Action.o: src/Action.cpp.o
+
+.PHONY : src/Action.o
+
+# target to build an object file
+src/Action.cpp.o:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/Action.cpp.o
+.PHONY : src/Action.cpp.o
+
+src/Action.i: src/Action.cpp.i
+
+.PHONY : src/Action.i
+
+# target to preprocess a source file
+src/Action.cpp.i:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/Action.cpp.i
+.PHONY : src/Action.cpp.i
+
+src/Action.s: src/Action.cpp.s
+
+.PHONY : src/Action.s
+
+# target to generate assembly for a file
+src/Action.cpp.s:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/Action.cpp.s
+.PHONY : src/Action.cpp.s
+
 src/Episode.o: src/Episode.cpp.o
 
 .PHONY : src/Episode.o
@@ -231,6 +258,33 @@ src/Session.cpp.s:
 	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/Session.cpp.s
 .PHONY : src/Session.cpp.s
 
+src/User.o: src/User.cpp.o
+
+.PHONY : src/User.o
+
+# target to build an object file
+src/User.cpp.o:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/User.cpp.o
+.PHONY : src/User.cpp.o
+
+src/User.i: src/User.cpp.i
+
+.PHONY : src/User.i
+
+# target to preprocess a source file
+src/User.cpp.i:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/User.cpp.i
+.PHONY : src/User.cpp.i
+
+src/User.s: src/User.cpp.s
+
+.PHONY : src/User.s
+
+# target to generate assembly for a file
+src/User.cpp.s:
+	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/src/User.cpp.s
+.PHONY : src/User.cpp.s
+
 src/Watchable.o: src/Watchable.cpp.o
 
 .PHONY : src/Watchable.o
@@ -267,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... SPLflix"
 	@echo "... edit_cache"
+	@echo "... src/Action.o"
+	@echo "... src/Action.i"
+	@echo "... src/Action.s"
 	@echo "... src/Episode.o"
 	@echo "... src/Episode.i"
 	@echo "... src/Episode.s"
@@ -279,6 +336,9 @@ help:
 	@echo "... src/Session.o"
 	@echo "... src/Session.i"
 	@echo "... src/Session.s"
+	@echo "... src/User.o"
+	@echo "... src/User.i"
+	@echo "... src/User.s"
 	@echo "... src/Watchable.o"
 	@echo "... src/Watchable.i"
 	@echo "... src/Watchable.s"

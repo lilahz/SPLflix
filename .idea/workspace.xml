@@ -11,15 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="try 1">
-      <change beforePath="$PROJECT_DIR$/.idea/SPLflix.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.h" beforeDir="false" />
-    </list>
+    <list default="true" id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="try 1" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +32,12 @@
       </set>
     </option>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1TpjlA5wCRr6lo7D1EBwMPKJbMd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SPLflix/CMakeLists.txt" />
     <property name="settings.editor.selected.configurable" value="language.cpp.clang-tidy" />
   </component>
   <component name="RecentsManager">
@@ -98,6 +91,7 @@
       <workItem from="1574256951651" duration="49000" />
       <workItem from="1574257002727" duration="15441000" />
       <workItem from="1574331903948" duration="2443000" />
+      <workItem from="1574349769608" duration="15828000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>

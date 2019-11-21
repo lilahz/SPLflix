@@ -14,6 +14,7 @@ std::string Episode::toString() const {
     if (episode<10)
          episodeString="0"+std::to_string(episode);
     return seriesName+" "+"S"+seasonString+"E"+episodeString;
+
 }
 
 //Watchable *Episode::getNextWatchable(Session &) const {
