@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Watchable.h
+string
+-
+vector
+-
+
+/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Episode.cpp
+../include/Watchable.h
+/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Watchable.h
+
