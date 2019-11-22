@@ -21,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/include/User.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/User.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Watchable.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Watchable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Movie.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Session.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Session.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Watchable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Watchable.cpp" afterDir="false" />
@@ -106,7 +107,7 @@
       <workItem from="1574257002727" duration="15441000" />
       <workItem from="1574331903948" duration="2443000" />
       <workItem from="1574349769608" duration="16418000" />
-      <workItem from="1574417557428" duration="20117000" />
+      <workItem from="1574417557428" duration="30188000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>

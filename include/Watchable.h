@@ -14,6 +14,8 @@ public:
     virtual std::string toString() const = 0;
   // virtual Watchable* getNextWatchable(Session&) const = 0;
     int getLength();
+    int getId();
+    std::string getTags();
 private:
     const long id;
     int length;
@@ -26,6 +28,7 @@ public:
     Movie(long id, const std::string& name, int length, const std::vector<std::string>& tags);
     void operator= (const Movie& other);
     virtual std::string toString() const;
+
 
  //  virtual Watchable* getNextWatchable(Session&) const;
 private:

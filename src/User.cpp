@@ -1,6 +1,6 @@
 #include "../include/User.h"
 #include "../include/Watchable.h"
-
+#include "../include/Action.h"
 // User Constructor
 // Initialize name string
 User::User(const std::string &name):name(name){
@@ -37,12 +37,11 @@ std::string User::getName() const {
     return name;
 }
 
-std::vector<Watchable *> User::get_history() const {
+std::vector<Watchable *> User:: get_history() {
     return history;
 }
-std::vector<Watchable *>* User::get_notSeen()  {
-    std::vector<Watchable*> *notSeen = new std::vector<Watchable *>;
-    return notSeen ;
+std::vector<Watchable *> User :: newget_notSeen()  {
+    return notSeen;
 }
 
 std::string User::getAlgo() {
@@ -54,13 +53,7 @@ void User::setAlgo(std::string algo) {
 
 }
 
-std::vector<Watchable *> User::getHistory() {
-    return history;
-}
 
-std::vector<Watchable *> User::getNotSeen() {
-    return notSeen;
-}
 
 void User::setHistory(std::vector<Watchable *> historyToCopy) {
     std::vector<Watchable*> history(historyToCopy.begin(), historyToCopy.end());
@@ -68,6 +61,10 @@ void User::setHistory(std::vector<Watchable *> historyToCopy) {
 
 void User::setNotSeen(std::vector<Watchable *> notSeenToCopy) {
     std::vector<Watchable*> notSeen(notSeenToCopy.begin(), notSeenToCopy.end());
+}
+
+std::vector<Watchable *> *User::get_notSeen() {
+    return &notSeen;
 }
 
 
@@ -96,6 +93,10 @@ Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
 
 std::string LengthRecommenderUser::getAlgo() {
     return User::getAlgo();
+}
+
+void LengthRecommenderUser::setHistory(std::vector<Watchable *> historyToCopy) {
+    User::setHistory(historyToCopy);
 }
 
 

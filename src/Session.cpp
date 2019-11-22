@@ -149,8 +149,26 @@ void Session::start() {
                 cout << "ERROR: user name already taken" << '\n';
             BaseAction* duplicateUser = new DuplicateUser(temp_olduser->second , thirdString);
             duplicateUser->act(*this );
-        }
 
+        }
+        if (command == "content")
+        {
+
+            BaseAction* printContent= new PrintContentList();
+            printContent->act(*this);
+        }
+        if (command == "watchhist")
+        {
+            BaseAction* printWatchHistory = new PrintWatchHistory();
+            printWatchHistory->act(*this);
+        }
+        if (command == "watch")
+        {
+
+            BaseAction* watch = new Watch();
+            watch->act(*this);
+
+        }
 
 
     }
@@ -170,6 +188,10 @@ void Session::deleteFromUserMap(std::string name) {
 
 std::vector<Watchable *> Session::getContent() {
     return content;
+}
+
+User *Session::getAcitveUser() {
+    return activeUser;
 }
 
 

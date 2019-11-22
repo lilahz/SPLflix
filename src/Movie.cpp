@@ -14,7 +14,6 @@ void Movie::operator= (const Movie &other) {
 }
 
 
-
 //Watchable *Movie::getNextWatchable(Session &) const {
 //    return nullptr;
 //}

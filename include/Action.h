@@ -70,12 +70,14 @@ private:
 
 class PrintContentList : public BaseAction {
 public:
+    PrintContentList();
 	virtual void act (Session& sess);
 	virtual std::string toString() const;
 };
 
 class PrintWatchHistory : public BaseAction {
 public:
+    PrintWatchHistory();
 	virtual void act (Session& sess);
 	virtual std::string toString() const;
 };
@@ -83,8 +85,11 @@ public:
 
 class Watch : public BaseAction {
 public:
+    Watch();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
+
+
 };
 
 

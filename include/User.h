@@ -20,9 +20,9 @@ public:
     std::vector<Watchable*>* get_notSeen();
     virtual std::string getAlgo();
     void setAlgo(std::string algo);
-    std::vector<Watchable*> getHistory();
-    void setHistory(std::vector<Watchable*> historyToCopy);
-    std::vector<Watchable*> getNotSeen();
+    std::vector<Watchable*> get_history();
+    virtual void setHistory(std::vector<Watchable*> historyToCopy);
+    std::vector<Watchable*> newget_notSeen();   //name
     void setNotSeen(std::vector<Watchable*> notSeenToCopy);
 protected:
     std::vector<Watchable*> history;
@@ -36,6 +36,7 @@ private:
 class LengthRecommenderUser : public User {
 public:
     LengthRecommenderUser(const std::string& name);
+    virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo();
 private:
