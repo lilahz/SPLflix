@@ -148,7 +148,7 @@ void Session::start() {
             if (temp_newuser != userMap.end())
                 cout << "ERROR: user name already taken" << '\n';
             BaseAction* duplicateUser = new DuplicateUser(temp_olduser->second , thirdString);
-            duplicateUser->act(*this);
+            duplicateUser->act(*this );
         }
 
 
