@@ -3,6 +3,7 @@
 
 CMakeFiles/SPLflix.dir/src/Action.cpp.o
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Action.h
+ /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Session.h
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/User.h
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp
 CMakeFiles/SPLflix.dir/src/Episode.cpp.o
@@ -11,6 +12,7 @@ CMakeFiles/SPLflix.dir/src/Episode.cpp.o
 CMakeFiles/SPLflix.dir/src/Main.cpp.o
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Action.h
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Session.h
+ /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/User.h
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Main.cpp
 CMakeFiles/SPLflix.dir/src/Movie.cpp.o
  /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Watchable.h

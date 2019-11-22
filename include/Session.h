@@ -17,11 +17,16 @@ public:
     Session(const Session& other);
     ~Session();
     void start();
-
+    void addToUserMap(std::string &name,User* user);
+    void setActiveUser(User *user);
+    void deleteFromUserMap(std::string name);
+    std::vector<Watchable*> getContent();
 private:
     std::vector<Watchable*> content;
     std::vector<BaseAction*> actionsLog;
     std::unordered_map<std::string,User*> userMap;
     User* activeUser;
+
+
 };
 #endif

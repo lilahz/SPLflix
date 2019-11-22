@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "../include/User.h"
 
 class Session;
 
@@ -28,27 +29,43 @@ private:
 
 class CreateUser  : public BaseAction {
 public:
+    CreateUser(const std::string &name, const std::string &algo);
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
+private:
+    std::string newUserName;
+    std::string algo;
 };
 
 class ChangeActiveUser : public BaseAction {
 public:
+    ChangeActiveUser(User* user);
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
+
+private:
+    User* activeUser;
 };
 
 class DeleteUser : public BaseAction {
 public:
+    DeleteUser(User* user);
 	virtual void act(Session & sess);
 	virtual std::string toString() const;
+private:
+    User* userToDelete;
 };
 
 
 class DuplicateUser : public BaseAction {
 public:
+    DuplicateUser(User* user, std::string newName);
 	virtual void act(Session & sess);
 	virtual std::string toString() const;
+
+private:
+    User* userToDuplicate;
+    std::string newName;
 };
 
 class PrintContentList : public BaseAction {

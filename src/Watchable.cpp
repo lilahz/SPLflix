@@ -9,9 +9,9 @@ Watchable::Watchable(long id, int length, std::vector<std::string> tags) :
 //
 //}
 
-//Watchable::~Watchable() {
-//
-//}
+Watchable::~Watchable() {
+
+}
 
 int Watchable::getLength()  {
     return length;

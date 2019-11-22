@@ -3,7 +3,9 @@
 
 // User Constructor
 // Initialize name string
-User::User(const std::string &name):name(name){}
+User::User(const std::string &name):name(name){
+
+}
 
 //copy assi
 User& User::operator= (const User& other)  {
@@ -18,7 +20,17 @@ User& User::operator= (const User& other)  {
 User::User(const User& other) : name(other.name)  {
     std::vector<Watchable*> history(other.history.begin(), other.history.end());
     std::vector<Watchable*> notSeen(other.notSeen.begin(), other.notSeen.end());
+}
 
+User::~User() {
+    for (Watchable* w: history){
+        delete w;
+    }
+    history.clear();
+    for (Watchable* w: notSeen){
+        delete w;
+    }
+    notSeen.clear();
 }
 
 std::string User::getName() const {
@@ -33,8 +45,37 @@ std::vector<Watchable *>* User::get_notSeen()  {
     return notSeen ;
 }
 
+std::string User::getAlgo() {
+    return userAlgo;
+}
+
+void User::setAlgo(std::string algo) {
+    userAlgo=algo;
+
+}
+
+std::vector<Watchable *> User::getHistory() {
+    return history;
+}
+
+std::vector<Watchable *> User::getNotSeen() {
+    return notSeen;
+}
+
+void User::setHistory(std::vector<Watchable *> historyToCopy) {
+    std::vector<Watchable*> history(historyToCopy.begin(), historyToCopy.end());
+}
+
+void User::setNotSeen(std::vector<Watchable *> notSeenToCopy) {
+    std::vector<Watchable*> notSeen(notSeenToCopy.begin(), notSeenToCopy.end());
+}
+
+
 LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
-    averageTime = 0;
+    setAlgo("len");
+    totalTime=0;
+    averageTime=0;
+    howManyMovies=0;
 }
 
 Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
@@ -51,4 +92,35 @@ Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
         i++;
     }
     return rec;
+}
+
+std::string LengthRecommenderUser::getAlgo() {
+    return User::getAlgo();
+}
+
+
+RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
+    setAlgo("rer");
+}
+
+Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
+    // TODO algo
+    return nullptr;
+}
+
+std::string RerunRecommenderUser::getAlgo() {
+    return User::getAlgo();
+}
+
+GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name) {
+    setAlgo("gen");
+}
+
+Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
+    // TODO algo
+    return nullptr;
+}
+
+std::string GenreRecommenderUser::getAlgo() {
+    return User::getAlgo();
 }
