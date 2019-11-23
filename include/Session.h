@@ -21,7 +21,7 @@ public:
     void setActiveUser(User *user);
     void deleteFromUserMap(std::string name);
     std::vector<Watchable*> getContent();
-    User* getAcitveUser();
+    User* getActiveUser();
 private:
     std::vector<Watchable*> content;
     std::vector<BaseAction*> actionsLog;

@@ -14,26 +14,32 @@ Watchable::~Watchable() {
 
 }
 
-int Watchable::getLength()  {
+int Watchable::getLength() {
     return length;
-
 }
 
-int Watchable::getId()  {
+int Watchable::getId() {
     return  id;
 }
-std::string Watchable::getTags(){
-    int i=0;
+
+std::string Watchable::tagsToString() {
+    int i = 0;
     std::string tagString;
-    while (i < tags.size() )
-    {
+    while (i < tags.size()) {
         tagString += tags.at(i);
         i++;
         if (i< tags.size())
             tagString+=", ";
     }
     return tagString;
-
 }
+
+std::vector<std::string> Watchable::getTags() {
+    return tags;
+}
+
+bool Watchable::isEpisode()  {}
+
+std::string Watchable::getSeriesName() {}
 
 

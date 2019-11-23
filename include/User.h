@@ -5,8 +5,12 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <map>
+
 class Watchable;
 class Session;
+
+//==================================================User.h==============================================================
 
 class User{
 public:
@@ -14,16 +18,17 @@ public:
     User& operator= (const User& other)  ;
     User(const User& other);
     ~User();
-//    virtual Watchable* getRecommendation(Session& s) = 0;
+    virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
-    std::vector<Watchable*> get_history() const;
-    std::vector<Watchable*>* get_notSeen();
+    std::vector<Watchable*> get_notSeen();
     virtual std::string getAlgo();
     void setAlgo(std::string algo);
-    std::vector<Watchable*> get_history();
+    std::vector<Watchable*> getHistory();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
-    std::vector<Watchable*> newget_notSeen();   //name
+    virtual void addToHistory(Watchable* watchable);
     void setNotSeen(std::vector<Watchable*> notSeenToCopy);
+    void removeFromNotSeen(Watchable* watchToDelete, int id);
+    virtual void updateRec(Watchable* watchable) ;
 protected:
     std::vector<Watchable*> history;
 private:
@@ -32,6 +37,7 @@ private:
     std::string userAlgo;
 };
 
+//===========================================LengthRecommenderUser.h====================================================
 
 class LengthRecommenderUser : public User {
 public:
@@ -39,26 +45,39 @@ public:
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo();
+    virtual void updateRec(Watchable* watchable);
 private:
     int totalTime;
     int howManyMovies;
     int averageTime;
 };
 
+//============================================RerunRecommenderUser.h====================================================
+
+
 class RerunRecommenderUser : public User {
 public:
     RerunRecommenderUser(const std::string& name);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo();
+    virtual void updateRec(Watchable* watchable);
 private:
+    int watchIndex;
+    int histLength;
 };
+
+//============================================GenreRecommenderUser.h====================================================
 
 class GenreRecommenderUser : public User {
 public:
     GenreRecommenderUser(const std::string& name);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() ;
+    virtual void updateRec(Watchable* watchable);
 private:
+    std::unordered_map<std::string, int> counterTag;
+    std::multimap<int, std::string> tagsMap;
+    std::multimap<std::string, int> sortedTagsMap;
 };
 
 #endif

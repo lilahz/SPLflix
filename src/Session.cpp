@@ -48,11 +48,9 @@ Session::Session(const std::string &configFilePath) {
 
             }
         }
-
         count++;
     }
-
-    }
+}
 
 //copy assignment
 Session& Session::operator= (const Session& other)  {
@@ -90,6 +88,7 @@ void Session::start() {
     cout << "SPLFLIX is now on!" << '\n';
     User* defaultUser = new LengthRecommenderUser("default");
     setActiveUser(defaultUser);
+    defaultUser->setNotSeen(content);
 
     std::string command;
     std::string name;
@@ -102,8 +101,7 @@ void Session::start() {
             if ((thirdString != "len") & (thirdString != "rer") & (thirdString != "gen")) {
                 cout << " ERROR: Invalid algorithm input." << '\n';
             }
-            else if (userMap.find(name) != userMap.end())
-            {
+            else if (userMap.find(name) != userMap.end()) {
                 //TODO send to error and change status/.
                 cout << " ERROR: User already exist ."<< '\n';
             }
@@ -114,20 +112,18 @@ void Session::start() {
 
             }
         }
-        if (command == "changeuser")
-        {
+        if (command == "changeuser") {
             cin >> name;
             std::unordered_map<std::string,User*>::const_iterator temp_user=userMap.find(name);
 
             if (temp_user == userMap.end())
                 cout << "ERROR: user does not exist."<< '\n';
-            else{
+            else {
                 BaseAction* change= new ChangeActiveUser(temp_user->second); // does this works?
                 change->act(*this);
             }
-
         }
-        if (command == "delete"){
+        if (command == "delete") {
             cin >> name;
             std::unordered_map<std::string,User*>::const_iterator temp_user=userMap.find(name);
 
@@ -138,7 +134,7 @@ void Session::start() {
                 deleteUser->act(*this);
             }
         }
-        if (command == "dupuser"){
+        if (command == "dupuser") {
             cin>> name;
             cin>> thirdString;
             std::unordered_map<std::string,User*>::const_iterator temp_olduser=userMap.find(name);
@@ -151,37 +147,31 @@ void Session::start() {
             duplicateUser->act(*this );
 
         }
-        if (command == "content")
-        {
-
+        if (command == "content") {
             BaseAction* printContent= new PrintContentList();
             printContent->act(*this);
         }
-        if (command == "watchhist")
-        {
+        if (command == "watchhist") {
             BaseAction* printWatchHistory = new PrintWatchHistory();
             printWatchHistory->act(*this);
         }
-        if (command == "watch")
-        {
-
+        if (command == "watch") {
             BaseAction* watch = new Watch();
             watch->act(*this);
-
         }
-
-
+        //Todo add yes/no opt
     }
-
 }
 
 void Session::addToUserMap(std::string &name, User* user) {
     std::pair<std::string, User*> temp_pair(name,user);
     userMap.insert(temp_pair);
 }
-void Session::setActiveUser(User* user){
+
+void Session::setActiveUser(User* user) {
     activeUser = user;
 }
+
 void Session::deleteFromUserMap(std::string name) {
     userMap.erase(name);
 }
@@ -190,7 +180,7 @@ std::vector<Watchable *> Session::getContent() {
     return content;
 }
 
-User *Session::getAcitveUser() {
+User *Session::getActiveUser() {
     return activeUser;
 }
 
