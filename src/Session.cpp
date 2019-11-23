@@ -87,8 +87,8 @@ Session::~Session() {
 void Session::start() {
     cout << "SPLFLIX is now on!" << '\n';
     User* defaultUser = new LengthRecommenderUser("default");
+    addToUserMap("default", defaultUser);
     setActiveUser(defaultUser);
-    defaultUser->setNotSeen(content);
 
     std::string command;
     std::string name;
@@ -96,53 +96,23 @@ void Session::start() {
     while (command != "exit") {
         cin >> command;
         if (command == "createuser") {
-            cin >> name;
-            cin >> thirdString;
-            if ((thirdString != "len") & (thirdString != "rer") & (thirdString != "gen")) {
-                cout << " ERROR: Invalid algorithm input." << '\n';
-            }
-            else if (userMap.find(name) != userMap.end()) {
-                //TODO send to error and change status/.
-                cout << " ERROR: User already exist ."<< '\n';
-            }
-            else {
-                BaseAction* create = new CreateUser(name, thirdString);
-                // TODO actionlog add action
-                create->act(*this);
-
+            BaseAction* create = new CreateUser(name, thirdString);
+            create->act(*this);
             }
         }
         if (command == "changeuser") {
-            cin >> name;
-            std::unordered_map<std::string,User*>::const_iterator temp_user=userMap.find(name);
+            BaseAction* change= new ChangeActiveUser();
+            change->act(*this);
 
-            if (temp_user == userMap.end())
-                cout << "ERROR: user does not exist."<< '\n';
-            else {
-                BaseAction* change= new ChangeActiveUser(temp_user->second); // does this works?
-                change->act(*this);
-            }
         }
         if (command == "delete") {
-            cin >> name;
-            std::unordered_map<std::string,User*>::const_iterator temp_user=userMap.find(name);
-
-            if (temp_user == userMap.end())
-                cout << "ERROR: user does not exist."<< '\n';
-            else{
-                BaseAction* deleteUser= new DeleteUser(temp_user->second); // does this works?
-                deleteUser->act(*this);
-            }
+            BaseAction* deleteUser= new DeleteUser(temp_user->second); // does this works?
+            deleteUser->act(*this);
         }
         if (command == "dupuser") {
-            cin>> name;
-            cin>> thirdString;
-            std::unordered_map<std::string,User*>::const_iterator temp_olduser=userMap.find(name);
-            std::unordered_map<std::string,User*>::const_iterator temp_newuser=userMap.find(thirdString);
-            if (temp_olduser == userMap.end())
-                cout << "ERROR: user does not exist."<< '\n';
-            if (temp_newuser != userMap.end())
-                cout << "ERROR: user name already taken" << '\n';
+
+            BaseAction* dup = new CreateUser(thirdString, temp_olduser->second->getAlgo());
+            dup->act(*this);
             BaseAction* duplicateUser = new DuplicateUser(temp_olduser->second , thirdString);
             duplicateUser->act(*this );
 
@@ -159,11 +129,11 @@ void Session::start() {
             BaseAction* watch = new Watch();
             watch->act(*this);
         }
-        //Todo add yes/no opt
+
     }
 }
 
-void Session::addToUserMap(std::string &name, User* user) {
+void Session::addToUserMap(std::string name, User* user) {
     std::pair<std::string, User*> temp_pair(name,user);
     userMap.insert(temp_pair);
 }
@@ -184,6 +154,17 @@ User *Session::getActiveUser() {
     return activeUser;
 }
 
+User *Session::findInUserMap(std::string name) {
+    for (auto x: userMap) {
+        if (x.first == name) {
+            return x.second;
+        }
+    }
+}
+
+void Session::addToActionsLog(BaseAction* act){
+    actionsLog.push_back(act);
+}
 
 
 

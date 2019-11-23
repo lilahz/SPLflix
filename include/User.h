@@ -20,20 +20,16 @@ public:
     ~User();
     virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
-    std::vector<Watchable*> get_notSeen();
     virtual std::string getAlgo();
     void setAlgo(std::string algo);
     std::vector<Watchable*> getHistory();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual void addToHistory(Watchable* watchable);
-    void setNotSeen(std::vector<Watchable*> notSeenToCopy);
-    void removeFromNotSeen(Watchable* watchToDelete, int id);
     virtual void updateRec(Watchable* watchable) ;
 protected:
     std::vector<Watchable*> history;
 private:
     const std::string name;
-    std::vector<Watchable*> notSeen;
     std::string userAlgo;
 };
 

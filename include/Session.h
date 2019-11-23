@@ -17,11 +17,13 @@ public:
     Session(const Session& other);
     ~Session();
     void start();
-    void addToUserMap(std::string &name,User* user);
+    void addToUserMap(std::string name,User* user);
+    User* findInUserMap(std::string name);
     void setActiveUser(User *user);
     void deleteFromUserMap(std::string name);
     std::vector<Watchable*> getContent();
     User* getActiveUser();
+    void addToActionsLog(BaseAction* act);
 private:
     std::vector<Watchable*> content;
     std::vector<BaseAction*> actionsLog;

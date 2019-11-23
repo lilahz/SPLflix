@@ -1,6 +1,10 @@
 #include "../include/User.h"
 #include "../include/Watchable.h"
 #include "../include/Action.h"
+#include "../include/Session.h"
+
+#include <algorithm>
+
 
 using namespace std;
 
@@ -15,14 +19,12 @@ User& User::operator= (const User& other)  {
     if ( this != &other )
     {
         history = other.history;
-        notSeen = other.notSeen;
     }
 }
 
 // copy cons
 User::User(const User& other) : name(other.name)  {
     std::vector<Watchable*> history(other.history.begin(), other.history.end());
-    std::vector<Watchable*> notSeen(other.notSeen.begin(), other.notSeen.end());
 }
 
 User::~User() {
@@ -30,10 +32,6 @@ User::~User() {
         delete w;
     }
     history.clear();
-    for (Watchable* w: notSeen){
-        delete w;
-    }
-    notSeen.clear();
 }
 Watchable* User::getRecommendation(Session &s) {}
 
@@ -64,21 +62,7 @@ void User::addToHistory(Watchable *watchable) {
     history.push_back(watchable);
 }
 
-void User::setNotSeen(std::vector<Watchable *> notSeenToCopy) {
-    for (auto x: notSeenToCopy){
-        notSeen.push_back(x);
-    }
-}
-
-std::vector<Watchable *> User::get_notSeen() {
-    return notSeen;
-}
-
 void User::updateRec(Watchable *watchable) {}
-
-void User::removeFromNotSeen(Watchable* watchToDelete, int id) {
-    notSeen.erase(notSeen.begin() + id);
-}
 
 //==========================================Length Recommender User=====================================================
 
@@ -93,12 +77,14 @@ Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
     int i = 0;
     Watchable* rec;
     long min = INTMAX_MAX;
-    while (i<get_notSeen().size()){
-        Watchable* temp = get_notSeen().at(i);
-        int len = temp->getLength();
-        if (std::abs(len-averageTime) < min){
-            min = std::abs(len-averageTime);
-            rec = temp;
+    while (i<s.getContent().size()){
+        if (std::find(history.begin(), history.end(), s.getContent().at(i)) == history.end()) {
+            Watchable* temp = s.getContent().at(i);
+            int len = temp->getLength();
+            if (std::abs(len-averageTime) < min){
+                min = std::abs(len-averageTime);
+                rec = temp;
+            }
         }
         i++;
     }
@@ -123,19 +109,13 @@ void LengthRecommenderUser::updateRec(Watchable *watchable) {
 
 RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
     setAlgo("rer");
-    histLength = getHistory().size();
-    watchIndex = 0;
+    histLength=0;
 }
 
 Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     Watchable* rec;
-    if (watchIndex == 0){
-        rec = getHistory().at(0);
-    }
-    else {
-        rec = getHistory().at((watchIndex)%histLength);
-    }
-    watchIndex++;
+    watchIndex = history.at(history.size()-1)->getId();
+    rec = getHistory().at((watchIndex+1)%histLength);
     return rec;
 }
 
@@ -144,7 +124,6 @@ std::string RerunRecommenderUser::getAlgo() {
 }
 
 void RerunRecommenderUser::updateRec(Watchable *watchable) {
-    addToHistory(watchable);
     histLength++;
 }
 
@@ -166,14 +145,17 @@ Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
         std::pair<std::string, int> temp_pair(x.second, x.first);
         sortedTagsMap.insert(temp_pair);
     }
-    // Searching the relevant tag in the not seen vector
+    // Searching the relevant tag
     for (auto x: sortedTagsMap) {
         std::string tag = x.first;
-        for (int i = 0; i < get_notSeen().size(); i++) {
-            std::vector<std::string> temp_v = get_notSeen().at(i)->getTags();
-            for (auto str: temp_v) {
-                if (str == tag) {
-                    return get_notSeen().at(i);
+
+        for (int i = 0; i < s.getContent().size(); i++) {
+            if (std::find(history.begin(), history.end(), s.getContent().at(i)) == history.end()) {
+                std::vector<std::string> temp_v = s.getContent().at(i)->getTags();
+                for (auto str: temp_v) {
+                    if (str == tag) {
+                        return s.getContent().at(i);
+                    }
                 }
             }
         }

@@ -7,7 +7,9 @@
 #include "../include/Session.h"
 #include "../include/Watchable.h"
 
-BaseAction::BaseAction() {}
+BaseAction::BaseAction() {
+    status= PENDING;
+}
 
 ActionStatus BaseAction::getStatus() const {
     return status;
@@ -19,11 +21,15 @@ void BaseAction::complete() {
 
 void BaseAction::error(const std::string &errorMsg) {
     status = ERROR;
+    this->errorMsg = errorMsg;
+
 }
 
 std::string BaseAction::getErrorMsg() const {
     return errorMsg;
 }
+
+
 
 //=================================================Create User==========================================================
 
@@ -31,66 +37,113 @@ CreateUser::CreateUser(const std::string &name, const std::string &algo) : newUs
 
 void CreateUser::act(Session &sess) {
     User* user;
-    if (algo == "len") {
+    std::string name, thirdString;
+    std::cin >> name;
+    std::cin >> thirdString;
+    if ((thirdString != "len") & (thirdString != "rer") & (thirdString != "gen")) {
+        //                actionsLog.push_back()
+        error("Invalid algorithm input.");
+        std::cout<< "error" << getErrorMsg();
+    }
+    else if (sess.findInUserMap(name) != nullptr) {
+       error("User already exist.");
+        std::cout<< "error" << getErrorMsg();
+    }
+    else if (algo == "len") {
         user = new LengthRecommenderUser(newUserName);
+        complete();
     }
     else if (algo == "rer") {
         user = new RerunRecommenderUser(newUserName);
+        complete();
     }
-    if (algo == "gen") {
+    else if (algo == "gen") {
         user = new GenreRecommenderUser(newUserName);
+        complete();
     }
     sess.addToUserMap(newUserName , user);
-    user->setNotSeen(sess.getContent());
+    sess.addToActionsLog(this);
 
-    //TODO adding the history.
+
 }
 
 std::string CreateUser::toString() const {
-    return std::__cxx11::string();
+    if (getStatus() == ERROR){
+        return "ERROR: - " + getErrorMsg();
+    }
+    return "CreateUser " +  getStatus() ;
 }
 
 //==============================================Change Active User======================================================
 
-ChangeActiveUser::ChangeActiveUser(User *user) : activeUser(user) {}
+ChangeActiveUser::ChangeActiveUser(){}
 
 void ChangeActiveUser::act(Session &sess) {
-     sess.setActiveUser(activeUser);
+    std::string name;
+    std::cin >> name;
+
+    if (sess.findInUserMap(name) == nullptr)
+       error("user does not exist.");
+    else {
+        activeUser = sess.findInUserMap(name);
+        complete();
+    }
+    sess.addToActionsLog(this);
 }
 
 std::string ChangeActiveUser::toString() const {
-    return activeUser->getName();
+    if (getStatus() == ERROR){
+        return "ERROR: - " + getErrorMsg();
+    }
+    return "ChangeActiveUser " +  getStatus() ;
 }
-
 //=================================================Delete User==========================================================
 
 DeleteUser::DeleteUser(User *user) : userToDelete(user) {}
 
 void DeleteUser::act(Session &sess) {
-    sess.deleteFromUserMap(userToDelete->getName());
+    std::string name;
+    std::cin >> name;
+
+    if (sess.findInUserMap(name) == nullptr)
+        error("User does not exist.");
+    else {
+        sess.deleteFromUserMap(userToDelete->getName());
+        complete();
+    }
+    sess.addToActionsLog(this);
 }
 
 std::string DeleteUser::toString() const {
-    return std::__cxx11::string();
+    if (getStatus() == ERROR){
+        return "ERROR: - " + getErrorMsg();
+    }
+    return "CreateUser " +  getStatus() ;
+}
 }
 
 //================================================Duplicate User========================================================
-// TODO change the duplicate user action copy from ido
-DuplicateUser::DuplicateUser(User *user, std::string newName):userToDuplicate(user), newName(newName){
-    user->setHistory(userToDuplicate->getHistory());
-    user->setNotSeen(userToDuplicate->get_notSeen()); /// is this the right place>?!
-}
+DuplicateUser::DuplicateUser(User *user, std::string newName):userToDuplicate(user), newName(newName){}
 
 
 void DuplicateUser::act(Session &sess) {
-    BaseAction* newUser =new CreateUser(newName, userToDuplicate->getAlgo());
-    newUser->act(sess);
+    std::string name,thirdString;
+    std::cin>> name;
+    std::cin>> thirdString;
 
-
-
-
-
-    //TODO adding the history and not seen.
+    if (sess.findInUserMap(name) == nullptr)
+       error("User does not exist.");
+    else if (sess.findInUserMap(thirdString) != nullptr)
+        error("User name already taken");
+    else {
+        BaseAction* dup = new CreateUser(thirdString, userToDuplicate->getAlgo());
+        User* newUser=sess.findInUserMap(thirdString);
+        for (auto x: userToDuplicate->getHistory()) {
+            newUser->addToHistory(x);
+            complete();
+        }
+    sess.addToActionsLog(this);
+    }
 }
 
 std::string DuplicateUser::toString() const {
@@ -143,7 +196,6 @@ void Watch::act(Session &sess) {
         Watchable* watched = sess.getContent().at(intid);
         std::cout << "Watching "<< watched->toString()<< std::endl ;
         sess.getActiveUser()->addToHistory(watched);
-        sess.getActiveUser()->removeFromNotSeen(watched, intid);
 
         std::cout << "We recommend watching " ;
         // If it's an episode and not the last episode of the series
@@ -173,10 +225,6 @@ void Watch::act(Session &sess) {
         std::cout << ", continue watching? [y/n]" << std::endl;
         std::cin >>  answer;
     }
-
-
-
-
 }
 
 std::string Watch::toString() const {
@@ -184,6 +232,8 @@ std::string Watch::toString() const {
 }
 
 //==============================================Print Actions Log=======================================================
+PrintActionsLog::PrintActionsLog()= default;
+
 
 void PrintActionsLog::act(Session &sess) {
 

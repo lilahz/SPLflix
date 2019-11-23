@@ -39,7 +39,7 @@ private:
 
 class ChangeActiveUser : public BaseAction {
 public:
-    ChangeActiveUser(User* user);
+    ChangeActiveUser();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
 
@@ -95,8 +95,10 @@ public:
 
 class PrintActionsLog : public BaseAction {
 public:
+    PrintActionsLog();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
+
 };
 
 class Exit : public BaseAction {

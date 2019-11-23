@@ -26,6 +26,7 @@ CMakeFiles/SPLflix.dir/src/Session.cpp.o: ../include/json.hpp
 CMakeFiles/SPLflix.dir/src/Session.cpp.o: ../src/Session.cpp
 
 CMakeFiles/SPLflix.dir/src/User.cpp.o: ../include/Action.h
+CMakeFiles/SPLflix.dir/src/User.cpp.o: ../include/Session.h
 CMakeFiles/SPLflix.dir/src/User.cpp.o: ../include/User.h
 CMakeFiles/SPLflix.dir/src/User.cpp.o: ../include/Watchable.h
 CMakeFiles/SPLflix.dir/src/User.cpp.o: ../src/User.cpp
