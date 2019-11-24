@@ -135,7 +135,7 @@ Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
         }
 
     }
-    rec = getHistory().at((watchIndex+1)%histLength);
+    rec = getHistory().at((watchIndex+1)%histLength); //// how does it recommnd something not from history?!?!
     return rec;
 }
 
