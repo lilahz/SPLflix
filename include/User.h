@@ -25,7 +25,8 @@ public:
     std::vector<Watchable*> getHistory();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual void addToHistory(Watchable* watchable);
-    virtual void updateRec(Watchable* watchable) ;
+    virtual void updateRec(Watchable* watchable);
+    virtual User* duplicateUser(const std::string& name) = 0;
 protected:
     std::vector<Watchable*> history;
 private:
@@ -42,6 +43,7 @@ public:
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
+    User* duplicateUser(const std::string& name) override;
 private:
     int totalTime;
     int howManyMovies;
@@ -57,6 +59,7 @@ public:
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
+    User* duplicateUser(const std::string& name) override;
 private:
     int watchIndex;
     int histLength;
@@ -70,6 +73,7 @@ public:
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
+    User* duplicateUser(const std::string& name) override;
 private:
     std::unordered_map<std::string, int> counterTag;
     std::multimap<int, std::string> tagsMap;

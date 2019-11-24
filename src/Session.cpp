@@ -109,8 +109,8 @@ void Session::start() {
             BaseAction *deleteUser = new DeleteUser(); // does this works?
             deleteUser->act(*this);
         } else if (command == "dupuser") {
-            BaseAction *dup = new CreateUser();
-            dup->act(*this);
+            cin >> userName;
+            cin >> thirdParameter;
             BaseAction *duplicateUser = new DuplicateUser();
             duplicateUser->act(*this);
         } else if (command == "content") {
@@ -120,9 +120,11 @@ void Session::start() {
             BaseAction *printWatchHistory = new PrintWatchHistory();
             printWatchHistory->act(*this);
         } else if (command == "watch") {
-            std::cout << "start watching" << std::endl;
             BaseAction *watch = new Watch();
             watch->act(*this);
+        } else if (command == "log") {
+            BaseAction *log = new PrintActionsLog();
+            log->act(*this);
         }
     }
 }
@@ -167,6 +169,10 @@ std::string Session::getUserName() {
 
 std::string Session::getThirdParameter() {
     return thirdParameter;
+}
+
+std::vector<BaseAction *> Session::getActionLog() {
+    return actionsLog;
 }
 
 

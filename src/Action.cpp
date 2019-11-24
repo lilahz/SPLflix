@@ -45,6 +45,19 @@ std::string BaseAction::getErrorMsg() const {
     return errorMsg;
 }
 
+std::string BaseAction::getStatusString(ActionStatus status) const {
+    if (status == PENDING){
+        return "PENDING";
+    }
+    else if (status == COMPLETED) {
+        return "COMPLETED";
+    }
+    else if (status == ERROR) {
+        return "ERROR";
+    }
+    else return nullptr;
+}
+
 //=================================================Create User==========================================================
 // TODO: think if we need to keep the constructors.
 CreateUser::CreateUser() {}
@@ -57,33 +70,32 @@ CreateUser::CreateUser() {}
  */
 void CreateUser::act(Session &sess) {
     User* user;
-    //std::string name, thirdString;
-    //std::cin >> name;
-    //std::cin >> thirdString;
     std::string userName = sess.getUserName();
     std::string userAlgo = sess.getThirdParameter();
     if ((userAlgo != "len") & (userAlgo != "rer") & (userAlgo != "gen")) {
         // actionsLog.push_back()
         error("Invalid algorithm input.");
-        std::cout<< "error" << getErrorMsg();
+        std::cout<< "Error: " << getErrorMsg() << endl;
     }
     else if (sess.findInUserMap(userName) != nullptr) {
        error("User already exist.");
-        std::cout<< "error" << getErrorMsg();
+        std::cout<< "Error: " << getErrorMsg() << endl;
     }
     else if (userAlgo == "len") {
         user = new LengthRecommenderUser(userName);
+        sess.addToUserMap(userName , user);
         complete();
     }
     else if (userAlgo == "rer") {
         user = new RerunRecommenderUser(userName);
+        sess.addToUserMap(userName , user);
         complete();
     }
     else if (userAlgo == "gen") {
         user = new GenreRecommenderUser(userName);
+        sess.addToUserMap(userName , user);
         complete();
     }
-    sess.addToUserMap(userName , user);
     sess.addToActionsLog(this);
 }
 
@@ -93,13 +105,10 @@ void CreateUser::act(Session &sess) {
  */
 std::string CreateUser::toString() const {
     std::string str;
+    str = "CreateUser " + getStatusString(getStatus());
     if (getStatus() == ERROR){
-        str =  "ERROR: - " + getErrorMsg();
+        str = str + ": " + getErrorMsg();
     }
-//    else {
-//        // TODO find a way to case an UNUM to string
-//        str = "CreateUser " + getStatus();
-//    }
     return str;
 }
 
@@ -114,10 +123,11 @@ ChangeActiveUser::ChangeActiveUser(){}
 void ChangeActiveUser::act(Session &sess) {
     std::string userName;
     userName = sess.getUserName();
-//    std::cin >> name;
 
-    if (sess.findInUserMap(userName) == nullptr)
-       error("user does not exist.");
+    if (sess.findInUserMap(userName) == nullptr) {
+        error("user does not exist.");
+        cout << "ERROR: " << getErrorMsg() << endl;
+    }
     else {
         sess.setActiveUser(sess.findInUserMap(userName));
         complete();
@@ -131,13 +141,10 @@ void ChangeActiveUser::act(Session &sess) {
  */
 std::string ChangeActiveUser::toString() const {
     std::string str;
+    str = "ChangeActiveUser " + getStatusString(getStatus());
     if (getStatus() == ERROR){
-        str =  "ERROR: - " + getErrorMsg();
+        str = str + ": " + getErrorMsg();
     }
-//    else {
-//        // TODO find a way to cast an UNUM to string
-//        str = "ChangeActiveUser " + getStatus();
-//    }
     return str;
 }
 //=================================================Delete User==========================================================
@@ -152,10 +159,11 @@ DeleteUser::DeleteUser() {}
 void DeleteUser::act(Session &sess) {
     std::string userName;
     userName = sess.getUserName();
-    //std::cin >> name;
 
-    if (sess.findInUserMap(userName) == nullptr)
+    if (sess.findInUserMap(userName) == nullptr) {
         error("User does not exist.");
+        cout << "Error: " << getErrorMsg() << endl;
+    }
     else {
         sess.deleteFromUserMap(userName);
         complete();
@@ -169,18 +177,16 @@ void DeleteUser::act(Session &sess) {
  */
 std::string DeleteUser::toString() const {
     std::string str;
+    str = "DeleteUser " + getStatusString(getStatus());
     if (getStatus() == ERROR){
-        str =  "ERROR: - " + getErrorMsg();
+        str = str + ": " + getErrorMsg();
     }
-//    else {
-//        // TODO find a way to case an UNUM to string
-//        str = "DeleteUser " + getStatus();
-//    }
     return str;
 }
 
 
 //================================================Duplicate User========================================================
+// TODO make it work
 DuplicateUser::DuplicateUser() {}
 
 /*
@@ -193,22 +199,20 @@ void DuplicateUser::act(Session &sess) {
     std::string userName, newUserName;
     userName = sess.getUserName();
     newUserName = sess.getThirdParameter();
-//    std::cin>> name;
-//    std::cin>> thirdString;
 
-    if (sess.findInUserMap(userName) == nullptr)
-       error("User does not exist.");
-    else if (sess.findInUserMap(newUserName) != nullptr)
-        error("User name already taken");
-    else {
-        User* newUser=sess.findInUserMap(newUserName);
-        BaseAction* dup = new CreateUser();
-        for (auto x: userToDuplicate->getHistory()) {
-            newUser->addToHistory(x);
-            complete();
-        }
-    sess.addToActionsLog(this);
+    if (sess.findInUserMap(userName) == nullptr) {
+        error("User does not exist.");
+        cout << "Error: " << getErrorMsg() << endl;
     }
+    else if (sess.findInUserMap(newUserName) != nullptr) {
+        error("User name already taken");
+        cout << "Error: " << getErrorMsg() << endl;
+    }
+    else {
+        sess.addToUserMap(newUserName, sess.findInUserMap(userName)->duplicateUser(newUserName));
+        complete();
+    }
+    sess.addToActionsLog(this);
 }
 
 /*
@@ -217,13 +221,10 @@ void DuplicateUser::act(Session &sess) {
  */
 std::string DuplicateUser::toString() const {
     std::string str;
+    str = "DuplicateUser " + getStatusString(getStatus());
     if (getStatus() == ERROR){
-        str =  "ERROR: - " + getErrorMsg();
+        str = str + ": " + getErrorMsg();
     }
-//    else {
-//        // TODO find a way to case an UNUM to string
-//        str = "DuplicateUser " + getStatus();
-//    }
     return str;
 }
 
@@ -242,6 +243,8 @@ void PrintContentList::act(Session &sess) {
         std::cout << print->getId()+1<< ". " << print->toString()<< " " << print->getLength()
         << " minutes" << " [" << print->tagsToString()+"]" << std::endl;
     }
+    complete();
+    sess.addToActionsLog(this);
 }
 
 /*
@@ -249,7 +252,12 @@ void PrintContentList::act(Session &sess) {
  * (default)
  */
 std::string PrintContentList::toString() const {
-    return "PrintContentList";
+    std::string str;
+    str = "PrintContentList " + getStatusString(getStatus());
+    if (getStatus() == ERROR){
+        str = str + ": " + getErrorMsg();
+    }
+    return str;
 }
 
 //=============================================Print Watch History======================================================
@@ -266,6 +274,8 @@ void PrintWatchHistory::act(Session &sess) {
     for (int i=0; i<sess.getActiveUser()->getHistory().size();i++){
        std::cout << i+1 <<". " << sess.getActiveUser()->getHistory().at(i)->toString() << std::endl;
     }
+    complete();
+    sess.addToActionsLog(this);
 }
 
 /*
@@ -273,7 +283,12 @@ void PrintWatchHistory::act(Session &sess) {
  * (default)
  */
 std::string PrintWatchHistory::toString() const {
-    return std::string();
+    std::string str;
+    str = "PrintWatchHistory " + getStatusString(getStatus());
+    if (getStatus() == ERROR){
+        str = str + ": " + getErrorMsg();
+    }
+    return str;
 }
 
 //=====================================================Watch============================================================
@@ -291,39 +306,20 @@ void Watch::act(Session &sess) {
     std::string stringid;
     std::cin >> stringid ;
     int intid = std::stoi(stringid) - 1 ;
+    Watchable* watched = sess.getContent().at(intid);
     while (answer=="y"){
-
-        Watchable* watched = sess.getContent().at(intid);
         std::cout << "Watching "<< watched->toString()<< std::endl ;
         sess.getActiveUser()->addToHistory(watched);
+        sess.getActiveUser()->updateRec(watched);
 
         std::cout << "We recommend watching " ;
-        // If it's an episode and not the last episode of the series
-        if (watched->isEpisode() &&
-            watched->getSeriesName() ==  sess.getContent().at(intid+1)->getSeriesName())
-        {
-            std::cout << sess.getContent().at(intid+1)->toString();
-            intid ++;
-        }
-
-        else{
-            if (sess.getActiveUser()->getAlgo() == "len") {
-                sess.getActiveUser()->updateRec(watched);
-            }
-            if (sess.getActiveUser()->getAlgo() == "rer") {
-                sess.getActiveUser()->updateRec(watched);
-            }
-            if (sess.getActiveUser()->getAlgo() == "gen"){
-                sess.getActiveUser()->updateRec(watched);
-            }
-
-
-            std::cout << sess.getActiveUser()->getRecommendation(sess)->toString();
-            intid = sess.getActiveUser()->getRecommendation(sess)->getId();
-
-        }
+        std::cout << watched->getNextWatchable(sess)->toString();
         std::cout << ", continue watching? [y/n]" << std::endl;
         std::cin >>  answer;
+        watched = watched->getNextWatchable(sess);
+
+        complete();
+        sess.addToActionsLog(this);
     }
 }
 
@@ -332,7 +328,12 @@ void Watch::act(Session &sess) {
  * (default)
  */
 std::string Watch::toString() const {
-    return std::string();
+    std::string str;
+    str = "Watch " + getStatusString(getStatus());
+    if (getStatus() == ERROR){
+        str = str + ": " + getErrorMsg();
+    }
+    return str;
 }
 
 //==============================================Print Actions Log=======================================================
@@ -344,7 +345,13 @@ PrintActionsLog::PrintActionsLog()= default;
  * (default)
  */
 void PrintActionsLog::act(Session &sess) {
-
+    for (int i = sess.getActionLog().size() - 1; i >= 0; i--) {
+        cout << sess.getActionLog().at(i)->toString() << endl;
+    }
+//
+//    for (auto x: sess.getActionLog()) {
+//        cout << x->toString() << endl;
+//    }
 }
 
 /*

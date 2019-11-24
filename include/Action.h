@@ -18,6 +18,7 @@ public:
 	ActionStatus getStatus() const;
 	virtual void act(Session& sess)=0;
 	virtual std::string toString() const=0;
+    std::string getStatusString(ActionStatus status) const;
 protected:
 	void complete();
 	void error(const std::string& errorMsg);
@@ -101,7 +102,6 @@ public:
     PrintActionsLog();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
-
 };
 
 class Exit : public BaseAction {

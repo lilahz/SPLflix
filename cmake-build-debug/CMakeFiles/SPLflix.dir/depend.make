@@ -7,6 +7,9 @@ CMakeFiles/SPLflix.dir/src/Action.cpp.o: ../include/User.h
 CMakeFiles/SPLflix.dir/src/Action.cpp.o: ../include/Watchable.h
 CMakeFiles/SPLflix.dir/src/Action.cpp.o: ../src/Action.cpp
 
+CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../include/Action.h
+CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../include/Session.h
+CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../include/User.h
 CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../include/Watchable.h
 CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../src/Episode.cpp
 
@@ -15,6 +18,9 @@ CMakeFiles/SPLflix.dir/src/Main.cpp.o: ../include/Session.h
 CMakeFiles/SPLflix.dir/src/Main.cpp.o: ../include/User.h
 CMakeFiles/SPLflix.dir/src/Main.cpp.o: ../src/Main.cpp
 
+CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../include/Action.h
+CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../include/Session.h
+CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../include/User.h
 CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../include/Watchable.h
 CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../src/Movie.cpp
 

@@ -26,6 +26,7 @@ public:
     void addToActionsLog(BaseAction* act);
     std::string getUserName();
     std::string getThirdParameter();
+    std::vector<BaseAction*> getActionLog();
 private:
     std::vector<Watchable*> content;
     std::vector<BaseAction*> actionsLog;

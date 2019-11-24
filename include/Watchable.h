@@ -12,7 +12,7 @@ public:
     Watchable(long id, int length, std::vector<std::string>  tags);
     virtual ~Watchable();
     virtual std::string toString() const = 0;
-//    virtual Watchable* getNextWatchable(Session&) const = 0;
+    virtual Watchable* getNextWatchable(Session&) const = 0;
     int getLength();
     int getId();
     std::string tagsToString();
@@ -31,8 +31,7 @@ public:
     void operator= (const Movie& other);
     virtual std::string toString() const;
     virtual bool isEpisode();
-
- //  virtual Watchable* getNextWatchable(Session&) const;
+    virtual Watchable* getNextWatchable(Session&) const;
 private:
     std::string name;
     bool mov;
@@ -44,9 +43,9 @@ class Episode: public Watchable{
 public:
     Episode(long id, const std::string& seriesName,int length, int season, int episode ,const std::vector<std::string>& tags);
     virtual std::string toString() const;
-   // virtual Watchable* getNextWatchable(Session&) const;
-   virtual bool isEpisode();
-   virtual std::string getSeriesName();
+    virtual Watchable* getNextWatchable(Session&) const;
+    virtual bool isEpisode();
+    virtual std::string getSeriesName();
 private:
     std::string seriesName;
     int season;

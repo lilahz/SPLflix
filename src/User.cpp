@@ -106,6 +106,14 @@ void LengthRecommenderUser::updateRec(Watchable *watchable) {
     averageTime = totalTime / howManyMovies; // TODO check double, int, float...
 }
 
+User *LengthRecommenderUser::duplicateUser(const std::string &name) {
+    LengthRecommenderUser* newUser = new LengthRecommenderUser(name);
+    for (auto x: history) {
+        newUser->addToHistory(x);
+    }
+    return newUser;
+}
+
 //===========================================Rerun Recommender User=====================================================
 
 RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
@@ -127,6 +135,14 @@ std::string RerunRecommenderUser::getAlgo() const {
 
 void RerunRecommenderUser::updateRec(Watchable *watchable) {
     histLength++;
+}
+
+User *RerunRecommenderUser::duplicateUser(const std::string &name) {
+    RerunRecommenderUser *newUser = new RerunRecommenderUser(name);
+    for (auto x: history) {
+        newUser->addToHistory(x);
+    }
+    return newUser;
 }
 
 //==========================================Genre Recommender User=====================================================
@@ -184,4 +200,12 @@ void GenreRecommenderUser::updateRec(Watchable *watchable) {
             counterTag.insert(temp_pair);
         }
    }
+}
+
+User *GenreRecommenderUser::duplicateUser(const std::string &name) {
+    GenreRecommenderUser *newUser = new GenreRecommenderUser(name);
+    for (auto x: history) {
+        newUser->addToHistory(x);
+    }
+    return newUser;
 }

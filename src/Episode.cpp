@@ -1,8 +1,6 @@
-//
-// Created by lilachzi@wincs.cs.bgu.ac.il on 20/11/2019.
-//
-
 #include "../include/Watchable.h"
+#include "../include/Session.h"
+
 Episode::Episode(long id, const std::string &seriesName, int length, int season, int episode,
                  const std::vector<std::string> &tags):Watchable(id,length,tags),season(season),
                  episode(episode),seriesName(seriesName), eps(true), nextEpisodeId(id+1) {
@@ -20,9 +18,16 @@ std::string Episode::toString() const {
 
 }
 
-//Watchable *Episode::getNextWatchable(Session &) const {
-//    return nullptr;
-//}
+Watchable *Episode::getNextWatchable(Session &s) const {
+    // If it's an episode and not the last episode of the series
+    if (seriesName ==  s.getContent().at(nextEpisodeId)->getSeriesName()) {
+        return s.getContent().at(nextEpisodeId);
+    }
+    else {
+        s.getActiveUser()->getRecommendation(s);
+    }
+    return nullptr;
+}
 
 bool Episode::isEpisode(){
      return eps;
