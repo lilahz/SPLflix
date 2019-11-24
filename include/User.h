@@ -20,7 +20,7 @@ public:
     ~User();
     virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
-    virtual std::string getAlgo();
+    virtual std::string getAlgo() const=0;
     void setAlgo(std::string algo);
     std::vector<Watchable*> getHistory();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
@@ -40,7 +40,7 @@ public:
     LengthRecommenderUser(const std::string& name);
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo();
+    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
 private:
     int totalTime;
@@ -55,7 +55,7 @@ class RerunRecommenderUser : public User {
 public:
     RerunRecommenderUser(const std::string& name);
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo();
+    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
 private:
     int watchIndex;
@@ -68,7 +68,7 @@ class GenreRecommenderUser : public User {
 public:
     GenreRecommenderUser(const std::string& name);
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo() ;
+    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
 private:
     std::unordered_map<std::string, int> counterTag;

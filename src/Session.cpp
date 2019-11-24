@@ -86,50 +86,44 @@ Session::~Session() {
 
 void Session::start() {
     cout << "SPLFLIX is now on!" << '\n';
-    User* defaultUser = new LengthRecommenderUser("default");
+    User *defaultUser = new LengthRecommenderUser("default");
     addToUserMap("default", defaultUser);
     setActiveUser(defaultUser);
 
     std::string command;
-    std::string name;
-    std::string thirdString;
+//    std::string name;
+    //std::string thirdString;
     while (command != "exit") {
         cin >> command;
         if (command == "createuser") {
-            BaseAction* create = new CreateUser(name, thirdString);
+            cin >> userName;
+            cin >> thirdParameter;
+            BaseAction *create = new CreateUser();
             create->act(*this);
-            }
-        }
-        if (command == "changeuser") {
-            BaseAction* change= new ChangeActiveUser();
+        } else if (command == "changeuser") {
+            cin >> userName;
+            BaseAction *change = new ChangeActiveUser();
             change->act(*this);
-
-        }
-        if (command == "delete") {
-            BaseAction* deleteUser= new DeleteUser(temp_user->second); // does this works?
+        } else if (command == "delete") {
+            cin >> userName;
+            BaseAction *deleteUser = new DeleteUser(); // does this works?
             deleteUser->act(*this);
-        }
-        if (command == "dupuser") {
-
-            BaseAction* dup = new CreateUser(thirdString, temp_olduser->second->getAlgo());
+        } else if (command == "dupuser") {
+            BaseAction *dup = new CreateUser();
             dup->act(*this);
-            BaseAction* duplicateUser = new DuplicateUser(temp_olduser->second , thirdString);
-            duplicateUser->act(*this );
-
-        }
-        if (command == "content") {
-            BaseAction* printContent= new PrintContentList();
+            BaseAction *duplicateUser = new DuplicateUser();
+            duplicateUser->act(*this);
+        } else if (command == "content") {
+            BaseAction *printContent = new PrintContentList();
             printContent->act(*this);
-        }
-        if (command == "watchhist") {
-            BaseAction* printWatchHistory = new PrintWatchHistory();
+        } else if (command == "watchhist") {
+            BaseAction *printWatchHistory = new PrintWatchHistory();
             printWatchHistory->act(*this);
-        }
-        if (command == "watch") {
-            BaseAction* watch = new Watch();
+        } else if (command == "watch") {
+            std::cout << "start watching" << std::endl;
+            BaseAction *watch = new Watch();
             watch->act(*this);
         }
-
     }
 }
 
@@ -160,10 +154,19 @@ User *Session::findInUserMap(std::string name) {
             return x.second;
         }
     }
+    return nullptr;
 }
 
 void Session::addToActionsLog(BaseAction* act){
     actionsLog.push_back(act);
+}
+
+std::string Session::getUserName() {
+    return userName;
+}
+
+std::string Session::getThirdParameter() {
+    return thirdParameter;
 }
 
 

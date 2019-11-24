@@ -24,12 +24,14 @@ public:
     std::vector<Watchable*> getContent();
     User* getActiveUser();
     void addToActionsLog(BaseAction* act);
+    std::string getUserName();
+    std::string getThirdParameter();
 private:
     std::vector<Watchable*> content;
     std::vector<BaseAction*> actionsLog;
     std::unordered_map<std::string,User*> userMap;
     User* activeUser;
-
-
+    std::string userName;
+    std::string thirdParameter;
 };
 #endif

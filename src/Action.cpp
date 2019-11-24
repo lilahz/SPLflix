@@ -1,143 +1,208 @@
-//
-// Created by lilachzi@wincs.cs.bgu.ac.il on 21/11/2019.
-//
-
 #include "../include/Action.h"
 #include "../include/User.h"
 #include "../include/Session.h"
 #include "../include/Watchable.h"
 
+using namespace std;
+
 BaseAction::BaseAction() {
     status= PENDING;
 }
 
+//============================================Action Class Methods======================================================
+
+/*
+ * Returns the status of the current action
+ * @return ActionStatus PENDING, COMPLETED, ERROR based on the status.
+ * (default)
+ */
 ActionStatus BaseAction::getStatus() const {
     return status;
 }
 
+/*
+ * Updates the status of the action to COMPLETED.
+ * (default)
+ */
 void BaseAction::complete() {
     status = COMPLETED;
 }
 
+/*
+ * Updates the status of the action to ERROR and update the error massage.
+ * (default)
+ */
 void BaseAction::error(const std::string &errorMsg) {
     status = ERROR;
     this->errorMsg = errorMsg;
-
 }
 
+/*
+ * Return string of the relevant error massage.
+ * (default)
+ */
 std::string BaseAction::getErrorMsg() const {
     return errorMsg;
 }
 
-
-
 //=================================================Create User==========================================================
+// TODO: think if we need to keep the constructors.
+CreateUser::CreateUser() {}
 
-CreateUser::CreateUser(const std::string &name, const std::string &algo) : newUserName(name),algo(algo) {}
-
+/*
+ * Start the createUser action. Create new user based on the input algorithm,
+ * and add the new user to the userMap.
+ * @param: Session &sess: reference to Session object.
+ * (default)
+ */
 void CreateUser::act(Session &sess) {
     User* user;
-    std::string name, thirdString;
-    std::cin >> name;
-    std::cin >> thirdString;
-    if ((thirdString != "len") & (thirdString != "rer") & (thirdString != "gen")) {
-        //                actionsLog.push_back()
+    //std::string name, thirdString;
+    //std::cin >> name;
+    //std::cin >> thirdString;
+    std::string userName = sess.getUserName();
+    std::string userAlgo = sess.getThirdParameter();
+    if ((userAlgo != "len") & (userAlgo != "rer") & (userAlgo != "gen")) {
+        // actionsLog.push_back()
         error("Invalid algorithm input.");
         std::cout<< "error" << getErrorMsg();
     }
-    else if (sess.findInUserMap(name) != nullptr) {
+    else if (sess.findInUserMap(userName) != nullptr) {
        error("User already exist.");
         std::cout<< "error" << getErrorMsg();
     }
-    else if (algo == "len") {
-        user = new LengthRecommenderUser(newUserName);
+    else if (userAlgo == "len") {
+        user = new LengthRecommenderUser(userName);
         complete();
     }
-    else if (algo == "rer") {
-        user = new RerunRecommenderUser(newUserName);
+    else if (userAlgo == "rer") {
+        user = new RerunRecommenderUser(userName);
         complete();
     }
-    else if (algo == "gen") {
-        user = new GenreRecommenderUser(newUserName);
+    else if (userAlgo == "gen") {
+        user = new GenreRecommenderUser(userName);
         complete();
     }
-    sess.addToUserMap(newUserName , user);
+    sess.addToUserMap(userName , user);
     sess.addToActionsLog(this);
-
-
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string CreateUser::toString() const {
+    std::string str;
     if (getStatus() == ERROR){
-        return "ERROR: - " + getErrorMsg();
+        str =  "ERROR: - " + getErrorMsg();
     }
-    return "CreateUser " +  getStatus() ;
+//    else {
+//        // TODO find a way to case an UNUM to string
+//        str = "CreateUser " + getStatus();
+//    }
+    return str;
 }
 
 //==============================================Change Active User======================================================
 
 ChangeActiveUser::ChangeActiveUser(){}
 
+/*
+ * Start the ChangeActiveUser action. Change the active user to the input user.
+ * (default)
+ */
 void ChangeActiveUser::act(Session &sess) {
-    std::string name;
-    std::cin >> name;
+    std::string userName;
+    userName = sess.getUserName();
+//    std::cin >> name;
 
-    if (sess.findInUserMap(name) == nullptr)
+    if (sess.findInUserMap(userName) == nullptr)
        error("user does not exist.");
     else {
-        activeUser = sess.findInUserMap(name);
+        sess.setActiveUser(sess.findInUserMap(userName));
         complete();
     }
     sess.addToActionsLog(this);
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string ChangeActiveUser::toString() const {
+    std::string str;
     if (getStatus() == ERROR){
-        return "ERROR: - " + getErrorMsg();
+        str =  "ERROR: - " + getErrorMsg();
     }
-    return "ChangeActiveUser " +  getStatus() ;
+//    else {
+//        // TODO find a way to cast an UNUM to string
+//        str = "ChangeActiveUser " + getStatus();
+//    }
+    return str;
 }
 //=================================================Delete User==========================================================
 
-DeleteUser::DeleteUser(User *user) : userToDelete(user) {}
+DeleteUser::DeleteUser() {}
 
+/*
+ * Start the DeleteUser action.
+ * Deleted the user from the userMap.
+ * (default)
+ */
 void DeleteUser::act(Session &sess) {
-    std::string name;
-    std::cin >> name;
+    std::string userName;
+    userName = sess.getUserName();
+    //std::cin >> name;
 
-    if (sess.findInUserMap(name) == nullptr)
+    if (sess.findInUserMap(userName) == nullptr)
         error("User does not exist.");
     else {
-        sess.deleteFromUserMap(userToDelete->getName());
+        sess.deleteFromUserMap(userName);
         complete();
     }
     sess.addToActionsLog(this);
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string DeleteUser::toString() const {
+    std::string str;
     if (getStatus() == ERROR){
-        return "ERROR: - " + getErrorMsg();
+        str =  "ERROR: - " + getErrorMsg();
     }
-    return "CreateUser " +  getStatus() ;
+//    else {
+//        // TODO find a way to case an UNUM to string
+//        str = "DeleteUser " + getStatus();
+//    }
+    return str;
 }
-}
+
 
 //================================================Duplicate User========================================================
-DuplicateUser::DuplicateUser(User *user, std::string newName):userToDuplicate(user), newName(newName){}
+DuplicateUser::DuplicateUser() {}
 
-
+/*
+ * Start the DuplicateUser action.
+ * Creates new user with new given name, but with same algorithm and watching history
+ * of exist user.
+ * (default)
+ */
 void DuplicateUser::act(Session &sess) {
-    std::string name,thirdString;
-    std::cin>> name;
-    std::cin>> thirdString;
+    std::string userName, newUserName;
+    userName = sess.getUserName();
+    newUserName = sess.getThirdParameter();
+//    std::cin>> name;
+//    std::cin>> thirdString;
 
-    if (sess.findInUserMap(name) == nullptr)
+    if (sess.findInUserMap(userName) == nullptr)
        error("User does not exist.");
-    else if (sess.findInUserMap(thirdString) != nullptr)
+    else if (sess.findInUserMap(newUserName) != nullptr)
         error("User name already taken");
     else {
-        BaseAction* dup = new CreateUser(thirdString, userToDuplicate->getAlgo());
-        User* newUser=sess.findInUserMap(thirdString);
+        User* newUser=sess.findInUserMap(newUserName);
+        BaseAction* dup = new CreateUser();
         for (auto x: userToDuplicate->getHistory()) {
             newUser->addToHistory(x);
             complete();
@@ -146,14 +211,31 @@ void DuplicateUser::act(Session &sess) {
     }
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string DuplicateUser::toString() const {
-    return std::__cxx11::string();
+    std::string str;
+    if (getStatus() == ERROR){
+        str =  "ERROR: - " + getErrorMsg();
+    }
+//    else {
+//        // TODO find a way to case an UNUM to string
+//        str = "DuplicateUser " + getStatus();
+//    }
+    return str;
 }
 
 //=============================================Print Content List=======================================================
 
 PrintContentList::PrintContentList()= default;
 
+/*
+ * Start the PrintContentList action.
+ * Prints all the available content to the active user.
+ * (default)
+ */
 void PrintContentList::act(Session &sess) {
     for (int i=0; i<sess.getContent().size(); i++) {
         Watchable *print = sess.getContent().at(i);
@@ -162,6 +244,10 @@ void PrintContentList::act(Session &sess) {
     }
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string PrintContentList::toString() const {
     return "PrintContentList";
 }
@@ -170,6 +256,11 @@ std::string PrintContentList::toString() const {
 
 PrintWatchHistory::PrintWatchHistory()= default;
 
+/*
+ * Start the PrintWatchHistory action.
+ * Prints the watch history of the active user.
+ * (default)
+ */
 void PrintWatchHistory::act(Session &sess) {
     std::cout << "Watch history for " << sess.getActiveUser()->getName() << std::endl;
     for (int i=0; i<sess.getActiveUser()->getHistory().size();i++){
@@ -177,16 +268,25 @@ void PrintWatchHistory::act(Session &sess) {
     }
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string PrintWatchHistory::toString() const {
-    return std::__cxx11::string();
+    return std::string();
 }
 
 //=====================================================Watch============================================================
 
 Watch::Watch()=default ;
 
+/*
+ * Start the Watch action.
+ * Watching content (movie/episode) based on given content id or reccomendation.
+ * (default)
+ */
 void Watch::act(Session &sess) {
-    // if it a episode we need to rec the next one
+    // Todo: Implement getNextWatchable using visitor pattern
     std::string answer="y";
     std::string stringid;
     std::cin >> stringid ;
@@ -227,28 +327,47 @@ void Watch::act(Session &sess) {
     }
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string Watch::toString() const {
-    return std::__cxx11::string();
+    return std::string();
 }
 
 //==============================================Print Actions Log=======================================================
 PrintActionsLog::PrintActionsLog()= default;
 
-
+/*
+ * Start the PrintActionLog action.
+ * Prints all the actions that were performed in the current session with their statuses and messages.
+ * (default)
+ */
 void PrintActionsLog::act(Session &sess) {
 
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string PrintActionsLog::toString() const {
-    return std::__cxx11::string();
+    return std::string();
 }
 
 //=====================================================Exit=============================================================
-
+// TODO: what should we do here?
+/*
+ * Start the Exit action.
+ */
 void Exit::act(Session &sess) {
 
 }
 
+/*
+ * Returns string with information about the action status.
+ * (default)
+ */
 std::string Exit::toString() const {
-    return std::__cxx11::string();
+    return std::string();
 }

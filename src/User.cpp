@@ -15,12 +15,12 @@ User::User(const std::string &name):name(name) {
 }
 
 //copy assi
-User& User::operator= (const User& other)  {
-    if ( this != &other )
-    {
-        history = other.history;
-    }
-}
+//User& User::operator= (const User& other)  {
+//    if ( this != &other )
+//    {
+//        history = other.history;
+//    }
+//}
 
 // copy cons
 User::User(const User& other) : name(other.name)  {
@@ -33,7 +33,7 @@ User::~User() {
     }
     history.clear();
 }
-Watchable* User::getRecommendation(Session &s) {}
+//Watchable* User::getRecommendation(Session &s) {}
 
 std::string User::getName() const {
     return name;
@@ -43,9 +43,9 @@ std::vector<Watchable *> User::getHistory() {
     return history;
 }
 
-std::string User::getAlgo() {
-    return userAlgo;
-}
+//std::string User::getAlgo() {
+//    return userAlgo;
+//}
 
 void User::setAlgo(std::string algo) {
     userAlgo=algo;
@@ -91,8 +91,9 @@ Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
     return rec;
 }
 
-std::string LengthRecommenderUser::getAlgo() {
-    return User::getAlgo();
+std::string LengthRecommenderUser::getAlgo() const {
+//    return User::getAlgo();
+    return "len";
 }
 
 void LengthRecommenderUser::setHistory(std::vector<Watchable *> historyToCopy) {
@@ -119,8 +120,9 @@ Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     return rec;
 }
 
-std::string RerunRecommenderUser::getAlgo() {
-    return User::getAlgo();
+std::string RerunRecommenderUser::getAlgo() const {
+//    return User::getAlgo();
+    return "rer";
 }
 
 void RerunRecommenderUser::updateRec(Watchable *watchable) {
@@ -163,8 +165,9 @@ Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
     return nullptr;
 }
 
-std::string GenreRecommenderUser::getAlgo() {
-    return User::getAlgo();
+std::string GenreRecommenderUser::getAlgo() const {
+//    return User::getAlgo();
+    return "gen";
 }
 
 void GenreRecommenderUser::updateRec(Watchable *watchable) {

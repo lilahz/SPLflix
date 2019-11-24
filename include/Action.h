@@ -29,7 +29,8 @@ private:
 
 class CreateUser  : public BaseAction {
 public:
-    CreateUser(const std::string &name, const std::string &algo);
+    //CreateUser(const std::string &name, const std::string &algo);
+    CreateUser();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
 private:
@@ -49,7 +50,8 @@ private:
 
 class DeleteUser : public BaseAction {
 public:
-    DeleteUser(User* user);
+    //DeleteUser(User* user);
+    DeleteUser();
 	virtual void act(Session & sess);
 	virtual std::string toString() const;
 private:
@@ -59,7 +61,8 @@ private:
 
 class DuplicateUser : public BaseAction {
 public:
-    DuplicateUser(User* user, std::string newName);
+    //DuplicateUser(User* user, std::string newName);
+    DuplicateUser();
 	virtual void act(Session & sess);
 	virtual std::string toString() const;
 
