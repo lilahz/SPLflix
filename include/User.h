@@ -27,6 +27,7 @@ public:
     virtual void addToHistory(Watchable* watchable);
     virtual void updateRec(Watchable* watchable);
     virtual User* duplicateUser(const std::string& name) = 0;
+    virtual  void setLastRecomended(Watchable* rec);
 protected:
     std::vector<Watchable*> history;
 private:
@@ -60,9 +61,11 @@ public:
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
+    void setLastRecomended(Watchable* rec);
 private:
     int watchIndex;
     int histLength;
+    Watchable* lastRecomended;
 };
 
 //============================================GenreRecommenderUser.h====================================================

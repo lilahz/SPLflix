@@ -63,6 +63,10 @@ void User::addToHistory(Watchable *watchable) {
 
 void User::updateRec(Watchable *watchable) {}
 
+void User::setLastRecomended(Watchable *rec) { ///////////
+
+}
+
 //==========================================Length Recommender User=====================================================
 
 LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
@@ -122,7 +126,15 @@ RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name)
 
 Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     Watchable* rec;
-    watchIndex = history.at(history.size()-1)->getId();
+   std::cout << lastRecomended->getId() <<endl;
+    for (auto x: getHistory())
+    {
+        if (x == lastRecomended){
+            watchIndex=lastRecomended->getId();
+            break;
+        }
+
+    }
     rec = getHistory().at((watchIndex+1)%histLength);
     return rec;
 }
@@ -142,6 +154,11 @@ User *RerunRecommenderUser::duplicateUser(const std::string &name) {
         newUser->addToHistory(x);
     }
     return newUser;
+}
+
+void RerunRecommenderUser::setLastRecomended(Watchable* rec) {
+    lastRecomended=rec;
+
 }
 
 //==========================================Genre Recommender User=====================================================

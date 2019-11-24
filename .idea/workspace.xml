@@ -14,18 +14,14 @@
     <list default="true" id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="try 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/Action.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/Action.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/Main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/Main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/User.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPLflix.dir/src/User.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/SPLflix" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/SPLflix" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Session.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Session.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/User.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/User.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Watchable.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Watchable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Episode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Episode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Movie.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Session.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Session.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -114,7 +110,7 @@
       <workItem from="1574501582641" duration="36646000" />
       <workItem from="1574609341391" duration="59000" />
       <workItem from="1574609469973" duration="587000" />
-      <workItem from="1574610129079" duration="10111000" />
+      <workItem from="1574610129079" duration="16157000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>
@@ -158,19 +154,44 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/User.cpp</url>
-          <line>125</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Movie.cpp</url>
           <line>21</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/User.cpp</url>
-          <line>155</line>
+          <line>171</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Session.cpp</url>
+          <line>95</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>127</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Action.cpp</url>
+          <line>326</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>159</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Action.cpp</url>
+          <line>314</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>158</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

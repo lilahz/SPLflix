@@ -311,12 +311,21 @@ void Watch::act(Session &sess) {
         std::cout << "Watching "<< watched->toString()<< std::endl ;
         sess.getActiveUser()->addToHistory(watched);
         sess.getActiveUser()->updateRec(watched);
-
+        watched = watched->getNextWatchable(sess);
+        sess.getActiveUser()->setLastRecomended(watched);
         std::cout << "We recommend watching " ;
-        std::cout << watched->getNextWatchable(sess)->toString();
+        std::cout << watched->toString();
         std::cout << ", continue watching? [y/n]" << std::endl;
         std::cin >>  answer;
-        watched = watched->getNextWatchable(sess);
+
+
+
+//        std::cout << "We recommend watching " ;
+//        std::cout << watched->getNextWatchable(sess)->toString();
+//        std::cout << ", continue watching? [y/n]" << std::endl;
+//        std::cin >>  answer;
+//        watched = watched->getNextWatchable(sess);
+//        sess.getActiveUser()->setLastRecomended(watched);
 
         complete();
         sess.addToActionsLog(this);

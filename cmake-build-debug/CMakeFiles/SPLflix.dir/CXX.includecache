@@ -42,16 +42,6 @@ string
 vector
 -
 
-/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp
-../include/Action.h
-/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Action.h
-../include/User.h
-/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/User.h
-../include/Session.h
-/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Session.h
-../include/Watchable.h
-/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/Watchable.h
-
 /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/User.cpp
 ../include/User.h
 /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/include/User.h

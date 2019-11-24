@@ -26,6 +26,7 @@ protected:
 private:
 	std::string errorMsg;
 	ActionStatus status;
+
 };
 
 class CreateUser  : public BaseAction {
@@ -92,6 +93,8 @@ public:
     Watch();
 	virtual void act(Session& sess);
 	virtual std::string toString() const;
+
+private:
 
 
 };
