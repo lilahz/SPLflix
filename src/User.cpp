@@ -10,9 +10,8 @@ using namespace std;
 
 // User Constructor
 // Initialize name string
-User::User(const std::string &name):name(name) {
+User::User(const std::string &name):name(name) {}
 
-}
 
 //copy assi
 //User& User::operator= (const User& other)  {

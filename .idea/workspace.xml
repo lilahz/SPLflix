@@ -114,7 +114,7 @@
       <workItem from="1574501582641" duration="36646000" />
       <workItem from="1574609341391" duration="59000" />
       <workItem from="1574609469973" duration="587000" />
-      <workItem from="1574610129079" duration="7456000" />
+      <workItem from="1574610129079" duration="10111000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>
@@ -163,9 +163,14 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Action.cpp</url>
-          <line>98</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/src/Movie.cpp</url>
+          <line>21</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>155</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
