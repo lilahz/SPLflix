@@ -1,5 +1,4 @@
 #include "../include/Action.h"
-#include "../include/User.h"
 #include "../include/Session.h"
 #include "../include/Watchable.h"
 
@@ -60,7 +59,7 @@ std::string BaseAction::getStatusString(ActionStatus status) const {
 
 //=================================================Create User==========================================================
 // TODO: think if we need to keep the constructors.
-CreateUser::CreateUser() {}
+//CreateUser::CreateUser() {}
 
 /*
  * Start the createUser action. Create new user based on the input algorithm,
@@ -112,9 +111,11 @@ std::string CreateUser::toString() const {
     return str;
 }
 
-//==============================================Change Active User======================================================
+BaseAction *CreateUser::clone() const {
+    return new CreateUser(*this);
+}
 
-ChangeActiveUser::ChangeActiveUser(){}
+//==============================================Change Active User======================================================
 
 /*
  * Start the ChangeActiveUser action. Change the active user to the input user.
@@ -147,9 +148,11 @@ std::string ChangeActiveUser::toString() const {
     }
     return str;
 }
-//=================================================Delete User==========================================================
 
-DeleteUser::DeleteUser() {}
+BaseAction *ChangeActiveUser::clone() const {
+    return new ChangeActiveUser(*this);
+}
+//=================================================Delete User==========================================================
 
 /*
  * Start the DeleteUser action.
@@ -184,10 +187,12 @@ std::string DeleteUser::toString() const {
     return str;
 }
 
+BaseAction *DeleteUser::clone() const {
+    return new DeleteUser(*this);
+}
+
 
 //================================================Duplicate User========================================================
-// TODO make it work
-DuplicateUser::DuplicateUser() {}
 
 /*
  * Start the DuplicateUser action.
@@ -228,9 +233,11 @@ std::string DuplicateUser::toString() const {
     return str;
 }
 
-//=============================================Print Content List=======================================================
+BaseAction *DuplicateUser::clone() const {
+    return new DuplicateUser(*this);
+}
 
-PrintContentList::PrintContentList()= default;
+//=============================================Print Content List=======================================================
 
 /*
  * Start the PrintContentList action.
@@ -260,9 +267,11 @@ std::string PrintContentList::toString() const {
     return str;
 }
 
-//=============================================Print Watch History======================================================
+BaseAction *PrintContentList::clone() const {
+    return new PrintContentList(*this);
+}
 
-PrintWatchHistory::PrintWatchHistory()= default;
+//=============================================Print Watch History======================================================
 
 /*
  * Start the PrintWatchHistory action.
@@ -291,42 +300,31 @@ std::string PrintWatchHistory::toString() const {
     return str;
 }
 
+BaseAction *PrintWatchHistory::clone() const {
+    return new PrintWatchHistory(*this);
+}
+
 //=====================================================Watch============================================================
-
-Watch::Watch()=default ;
-
 /*
  * Start the Watch action.
  * Watching content (movie/episode) based on given content id or reccomendation.
  * (default)
  */
 void Watch::act(Session &sess) {
-    // Todo: Implement getNextWatchable using visitor pattern
     std::string answer="y";
     std::string stringid;
     std::cin >> stringid ;
     int intid = std::stoi(stringid) - 1 ;
     Watchable* watched = sess.getContent().at(intid);
-    while (answer=="y"){
+    while (answer=="y") {
         std::cout << "Watching "<< watched->toString()<< std::endl ;
         sess.getActiveUser()->addToHistory(watched);
         sess.getActiveUser()->updateRec(watched);
         watched = watched->getNextWatchable(sess);
-        sess.getActiveUser()->setLastRecomended(watched);
         std::cout << "We recommend watching " ;
         std::cout << watched->toString();
         std::cout << ", continue watching? [y/n]" << std::endl;
         std::cin >>  answer;
-
-
-
-//        std::cout << "We recommend watching " ;
-//        std::cout << watched->getNextWatchable(sess)->toString();
-//        std::cout << ", continue watching? [y/n]" << std::endl;
-//        std::cin >>  answer;
-//        watched = watched->getNextWatchable(sess);
-//        sess.getActiveUser()->setLastRecomended(watched);
-
         complete();
         sess.addToActionsLog(this);
     }
@@ -345,9 +343,11 @@ std::string Watch::toString() const {
     return str;
 }
 
-//==============================================Print Actions Log=======================================================
-PrintActionsLog::PrintActionsLog()= default;
+BaseAction *Watch::clone() const {
+    return new Watch(*this);
+}
 
+//==============================================Print Actions Log=======================================================
 /*
  * Start the PrintActionLog action.
  * Prints all the actions that were performed in the current session with their statuses and messages.
@@ -357,10 +357,8 @@ void PrintActionsLog::act(Session &sess) {
     for (int i = sess.getActionLog().size() - 1; i >= 0; i--) {
         cout << sess.getActionLog().at(i)->toString() << endl;
     }
-//
-//    for (auto x: sess.getActionLog()) {
-//        cout << x->toString() << endl;
-//    }
+    complete();
+    sess.addToActionsLog(this);
 }
 
 /*
@@ -368,16 +366,25 @@ void PrintActionsLog::act(Session &sess) {
  * (default)
  */
 std::string PrintActionsLog::toString() const {
-    return std::string();
+    std::string str;
+    str = "PrintActionLog " + getStatusString(getStatus());
+    if (getStatus() == ERROR){
+        str = str + ": " + getErrorMsg();
+    }
+    return str;
+}
+
+BaseAction *PrintActionsLog::clone() const {
+    return new PrintActionsLog(*this);
 }
 
 //=====================================================Exit=============================================================
-// TODO: what should we do here?
 /*
  * Start the Exit action.
  */
 void Exit::act(Session &sess) {
-
+    complete();
+    sess.addToActionsLog(this);
 }
 
 /*
@@ -385,5 +392,11 @@ void Exit::act(Session &sess) {
  * (default)
  */
 std::string Exit::toString() const {
-    return std::string();
+    std::string str;
+    str = "Exit " + getStatusString(getStatus());
+    return str;
+}
+
+BaseAction *Exit::clone() const {
+    return new Exit(*this);
 }

@@ -14,10 +14,10 @@ void Movie::operator= (const Movie &other) {
 
 }
 
-bool Movie::isEpisode() {
-    return !(mov);
-}
-
 Watchable *Movie::getNextWatchable(Session &s) const {
     return s.getActiveUser()->getRecommendation(s);
+}
+
+Watchable *Movie::clone() const {
+    return new Movie(*this);
 }

@@ -15,24 +15,21 @@ class Session;
 class User{
 public:
     User(const std::string& name);
-    User& operator= (const User& other)  ;
-    User(const User& other);
-    ~User();
+//    User& operator= (const User& other); // Copy Constructor
+//    User(const User& other);
+    virtual ~User();
     virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
-    virtual std::string getAlgo() const=0;
-    void setAlgo(std::string algo);
     std::vector<Watchable*> getHistory();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual void addToHistory(Watchable* watchable);
     virtual void updateRec(Watchable* watchable);
     virtual User* duplicateUser(const std::string& name) = 0;
-    virtual  void setLastRecomended(Watchable* rec);
+    virtual User* clone() const = 0;
 protected:
     std::vector<Watchable*> history;
 private:
     const std::string name;
-    std::string userAlgo;
 };
 
 //===========================================LengthRecommenderUser.h====================================================
@@ -40,11 +37,13 @@ private:
 class LengthRecommenderUser : public User {
 public:
     LengthRecommenderUser(const std::string& name);
+    ~LengthRecommenderUser();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
+    virtual User* clone() const;
 private:
     int totalTime;
     int howManyMovies;
@@ -61,11 +60,10 @@ public:
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
-    void setLastRecomended(Watchable* rec);
+    virtual User* clone() const;
 private:
-    int watchIndex;
+    int recIndex;
     int histLength;
-    Watchable* lastRecomended;
 };
 
 //============================================GenreRecommenderUser.h====================================================
@@ -77,6 +75,7 @@ public:
     virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
+    virtual User* clone() const;
 private:
     std::unordered_map<std::string, int> counterTag;
     std::multimap<int, std::string> tagsMap;

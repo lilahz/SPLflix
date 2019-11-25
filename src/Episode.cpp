@@ -37,3 +37,7 @@ std::string Episode::getSeriesName(){
     return seriesName;
 
 }
+
+Watchable *Episode::clone() const {
+    return new Episode(*this);
+}
