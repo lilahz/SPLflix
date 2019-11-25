@@ -1,4 +1,4 @@
-/users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix
+/private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/lilahz/CLionProjects/SPLflix
 -- Configuring done
 -- Generating done
--- Build files have been written to: /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug
+-- Build files have been written to: /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug

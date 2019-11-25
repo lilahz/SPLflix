@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix
+CMAKE_SOURCE_DIR = /Users/lilahz/CLionProjects/SPLflix
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-bu
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -319,8 +319,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... SPLflix"
 	@echo "... edit_cache"
+	@echo "... SPLflix"
 	@echo "... src/Action.o"
 	@echo "... src/Action.i"
 	@echo "... src/Action.s"

@@ -35,19 +35,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix
+CMAKE_SOURCE_DIR = /Users/lilahz/CLionProjects/SPLflix
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/SPLflix.dir/all:
 	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/depend
 	$(MAKE) -f CMakeFiles/SPLflix.dir/build.make CMakeFiles/SPLflix.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target SPLflix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target SPLflix"
 .PHONY : CMakeFiles/SPLflix.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SPLflix.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SPLflix.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/SPLflix.dir/rule
 
 # Convenience name for target.

@@ -8,104 +8,104 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug"/>
+				<Option working_dir="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug"/>
+				<Option working_dir="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="SPLflix">
-				<Option output="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/SPLflix" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 SPLflix"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="SPLflix/fast">
-				<Option output="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/SPLflix" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 SPLflix/fast"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug"/>
+				<Option working_dir="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SPLflix">
+				<Option output="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/SPLflix" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 SPLflix"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SPLflix/fast">
+				<Option output="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/SPLflix" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 SPLflix/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Action.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Episode.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Episode.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Main.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Main.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Movie.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Movie.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Session.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Session.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/User.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/User.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Watchable.cpp">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/src/Watchable.cpp">
 			<Option target="SPLflix"/>
 		</Unit>
-		<Unit filename="/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/CMakeLists.txt">
+		<Unit filename="/Users/lilahz/CLionProjects/SPLflix/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

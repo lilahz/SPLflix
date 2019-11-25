@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /users/studs/bsc/2020/lilachzi/Downloads/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /private/var/folders/56/938cvjx94vn11bc6dmqzrs600000gn/T/AppTranslocation/A56A68A5-58B0-4D70-8B77-2B103A6FDBE2/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix
+CMAKE_SOURCE_DIR = /Users/lilahz/CLionProjects/SPLflix
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/SPLflix.dir/depend.make
@@ -59,94 +59,94 @@ include CMakeFiles/SPLflix.dir/flags.make
 
 CMakeFiles/SPLflix.dir/src/Main.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Main.cpp.o: ../src/Main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SPLflix.dir/src/Main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Main.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SPLflix.dir/src/Main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Main.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Main.cpp
 
 CMakeFiles/SPLflix.dir/src/Main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Main.cpp > CMakeFiles/SPLflix.dir/src/Main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Main.cpp > CMakeFiles/SPLflix.dir/src/Main.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Main.cpp -o CMakeFiles/SPLflix.dir/src/Main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Main.cpp -o CMakeFiles/SPLflix.dir/src/Main.cpp.s
 
 CMakeFiles/SPLflix.dir/src/Session.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Session.cpp.o: ../src/Session.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SPLflix.dir/src/Session.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Session.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Session.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SPLflix.dir/src/Session.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Session.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Session.cpp
 
 CMakeFiles/SPLflix.dir/src/Session.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Session.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Session.cpp > CMakeFiles/SPLflix.dir/src/Session.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Session.cpp > CMakeFiles/SPLflix.dir/src/Session.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Session.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Session.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Session.cpp -o CMakeFiles/SPLflix.dir/src/Session.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Session.cpp -o CMakeFiles/SPLflix.dir/src/Session.cpp.s
 
 CMakeFiles/SPLflix.dir/src/Watchable.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Watchable.cpp.o: ../src/Watchable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SPLflix.dir/src/Watchable.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Watchable.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Watchable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SPLflix.dir/src/Watchable.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Watchable.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Watchable.cpp
 
 CMakeFiles/SPLflix.dir/src/Watchable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Watchable.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Watchable.cpp > CMakeFiles/SPLflix.dir/src/Watchable.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Watchable.cpp > CMakeFiles/SPLflix.dir/src/Watchable.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Watchable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Watchable.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Watchable.cpp -o CMakeFiles/SPLflix.dir/src/Watchable.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Watchable.cpp -o CMakeFiles/SPLflix.dir/src/Watchable.cpp.s
 
 CMakeFiles/SPLflix.dir/src/Movie.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Movie.cpp.o: ../src/Movie.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SPLflix.dir/src/Movie.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Movie.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Movie.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SPLflix.dir/src/Movie.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Movie.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Movie.cpp
 
 CMakeFiles/SPLflix.dir/src/Movie.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Movie.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Movie.cpp > CMakeFiles/SPLflix.dir/src/Movie.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Movie.cpp > CMakeFiles/SPLflix.dir/src/Movie.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Movie.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Movie.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Movie.cpp -o CMakeFiles/SPLflix.dir/src/Movie.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Movie.cpp -o CMakeFiles/SPLflix.dir/src/Movie.cpp.s
 
 CMakeFiles/SPLflix.dir/src/Episode.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Episode.cpp.o: ../src/Episode.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SPLflix.dir/src/Episode.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Episode.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Episode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SPLflix.dir/src/Episode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Episode.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Episode.cpp
 
 CMakeFiles/SPLflix.dir/src/Episode.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Episode.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Episode.cpp > CMakeFiles/SPLflix.dir/src/Episode.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Episode.cpp > CMakeFiles/SPLflix.dir/src/Episode.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Episode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Episode.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Episode.cpp -o CMakeFiles/SPLflix.dir/src/Episode.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Episode.cpp -o CMakeFiles/SPLflix.dir/src/Episode.cpp.s
 
 CMakeFiles/SPLflix.dir/src/User.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/User.cpp.o: ../src/User.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SPLflix.dir/src/User.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/User.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/User.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SPLflix.dir/src/User.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/User.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/User.cpp
 
 CMakeFiles/SPLflix.dir/src/User.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/User.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/User.cpp > CMakeFiles/SPLflix.dir/src/User.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/User.cpp > CMakeFiles/SPLflix.dir/src/User.cpp.i
 
 CMakeFiles/SPLflix.dir/src/User.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/User.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/User.cpp -o CMakeFiles/SPLflix.dir/src/User.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/User.cpp -o CMakeFiles/SPLflix.dir/src/User.cpp.s
 
 CMakeFiles/SPLflix.dir/src/Action.cpp.o: CMakeFiles/SPLflix.dir/flags.make
 CMakeFiles/SPLflix.dir/src/Action.cpp.o: ../src/Action.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SPLflix.dir/src/Action.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Action.cpp.o -c /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SPLflix.dir/src/Action.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPLflix.dir/src/Action.cpp.o -c /Users/lilahz/CLionProjects/SPLflix/src/Action.cpp
 
 CMakeFiles/SPLflix.dir/src/Action.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPLflix.dir/src/Action.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp > CMakeFiles/SPLflix.dir/src/Action.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lilahz/CLionProjects/SPLflix/src/Action.cpp > CMakeFiles/SPLflix.dir/src/Action.cpp.i
 
 CMakeFiles/SPLflix.dir/src/Action.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPLflix.dir/src/Action.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/src/Action.cpp -o CMakeFiles/SPLflix.dir/src/Action.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lilahz/CLionProjects/SPLflix/src/Action.cpp -o CMakeFiles/SPLflix.dir/src/Action.cpp.s
 
 # Object files for target SPLflix
 SPLflix_OBJECTS = \
@@ -170,7 +170,7 @@ SPLflix: CMakeFiles/SPLflix.dir/src/User.cpp.o
 SPLflix: CMakeFiles/SPLflix.dir/src/Action.cpp.o
 SPLflix: CMakeFiles/SPLflix.dir/build.make
 SPLflix: CMakeFiles/SPLflix.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SPLflix"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SPLflix"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SPLflix.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,6 +183,6 @@ CMakeFiles/SPLflix.dir/clean:
 .PHONY : CMakeFiles/SPLflix.dir/clean
 
 CMakeFiles/SPLflix.dir/depend:
-	cd /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug /users/studs/bsc/2020/lilachzi/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/SPLflix.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/lilahz/CLionProjects/SPLflix /Users/lilahz/CLionProjects/SPLflix /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug /Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/SPLflix.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/SPLflix.dir/depend
 
