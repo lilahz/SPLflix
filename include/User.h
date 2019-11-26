@@ -15,8 +15,8 @@ class Session;
 class User{
 public:
     User(const std::string& name);
-//    User& operator= (const User& other); // Copy Constructor
-//    User(const User& other);
+    User(const User& other); // Copy Constructor
+    User& operator= (const User& other); // Copy Constructor
     virtual ~User();
     virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
@@ -25,11 +25,11 @@ public:
     virtual void addToHistory(Watchable* watchable);
     virtual void updateRec(Watchable* watchable);
     virtual User* duplicateUser(const std::string& name) = 0;
-    virtual User* clone() const = 0;
+    virtual User* clone(Session &s) = 0;
 protected:
     std::vector<Watchable*> history;
 private:
-    const std::string name;
+    std::string name;
 };
 
 //===========================================LengthRecommenderUser.h====================================================
@@ -37,12 +37,13 @@ private:
 class LengthRecommenderUser : public User {
 public:
     LengthRecommenderUser(const std::string& name);
+    virtual ~LengthRecommenderUser();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
-    virtual User* clone() const;
+    virtual User* clone(Session &s);
+
 private:
     int totalTime;
     int howManyMovies;
@@ -55,11 +56,13 @@ private:
 class RerunRecommenderUser : public User {
 public:
     RerunRecommenderUser(const std::string& name);
+
+    virtual ~RerunRecommenderUser();
+
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
-    virtual User* clone() const;
+    virtual User* clone(Session &s);
 private:
     int recIndex;
     int histLength;
@@ -70,11 +73,13 @@ private:
 class GenreRecommenderUser : public User {
 public:
     GenreRecommenderUser(const std::string& name);
+
+    virtual ~GenreRecommenderUser();
+
     virtual Watchable* getRecommendation(Session& s);
-    virtual std::string getAlgo() const;
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
-    virtual User* clone() const;
+    virtual User* clone(Session &s);
 private:
     std::unordered_map<std::string, int> counterTag;
     std::multimap<int, std::string> tagsMap;

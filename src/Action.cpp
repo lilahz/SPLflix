@@ -69,7 +69,7 @@ std::string BaseAction::getStatusString(ActionStatus status) const {
  */
 void CreateUser::act(Session &sess) {
     User* user;
-    std::string userName = sess.getUserName();
+    std::string userName = sess.getSecondParameter();
     std::string userAlgo = sess.getThirdParameter();
     if ((userAlgo != "len") & (userAlgo != "rer") & (userAlgo != "gen")) {
         // actionsLog.push_back()
@@ -123,7 +123,7 @@ BaseAction *CreateUser::clone() const {
  */
 void ChangeActiveUser::act(Session &sess) {
     std::string userName;
-    userName = sess.getUserName();
+    userName = sess.getSecondParameter();
 
     if (sess.findInUserMap(userName) == nullptr) {
         error("user does not exist.");
@@ -161,13 +161,14 @@ BaseAction *ChangeActiveUser::clone() const {
  */
 void DeleteUser::act(Session &sess) {
     std::string userName;
-    userName = sess.getUserName();
+    userName = sess.getSecondParameter();
+
 
     if (sess.findInUserMap(userName) == nullptr) {
         error("User does not exist.");
         cout << "Error: " << getErrorMsg() << endl;
     }
-    else {
+    else if (userName != sess.getActiveUser()->getName()) { //Not allowing to delete the activeuser
         sess.deleteFromUserMap(userName);
         complete();
     }
@@ -202,7 +203,7 @@ BaseAction *DeleteUser::clone() const {
  */
 void DuplicateUser::act(Session &sess) {
     std::string userName, newUserName;
-    userName = sess.getUserName();
+    userName = sess.getSecondParameter();
     newUserName = sess.getThirdParameter();
 
     if (sess.findInUserMap(userName) == nullptr) {
@@ -311,24 +312,23 @@ BaseAction *PrintWatchHistory::clone() const {
  * (default)
  */
 void Watch::act(Session &sess) {
-    std::string answer="y";
-    std::string stringid;
-    std::cin >> stringid ;
-    int intid = std::stoi(stringid) - 1 ;
-    Watchable* watched = sess.getContent().at(intid);
-    while (answer=="y") {
-        std::cout << "Watching "<< watched->toString()<< std::endl ;
-        sess.getActiveUser()->addToHistory(watched);
-        sess.getActiveUser()->updateRec(watched);
-        watched = watched->getNextWatchable(sess);
-        std::cout << "We recommend watching " ;
-        std::cout << watched->toString();
-        std::cout << ", continue watching? [y/n]" << std::endl;
-        std::cin >>  answer;
-        complete();
-        sess.addToActionsLog(this);
-    }
 
+    std::string stringid;
+    stringid = sess.getSecondParameter();
+    int intid;
+    Watchable* watched;
+    intid = std::stoi(stringid) - 1;
+    if (intid < 0 | intid > sess.getContent().size() - 1)
+    {
+        error("Invalid input");
+        cout << "Error: " << getErrorMsg() << endl;
+    }
+    watched = sess.getContent().at(intid);
+    std::cout << "Watching "<< watched->toString()<< std::endl ;
+    sess.getActiveUser()->addToHistory(watched);
+    sess.getActiveUser()->updateRec(watched);
+    complete();
+    sess.addToActionsLog(this);
 
 }
 

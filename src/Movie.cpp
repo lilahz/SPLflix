@@ -15,5 +15,6 @@ Watchable *Movie::getNextWatchable(Session &s) const {
 }
 
 Watchable *Movie::clone() const {
-    return new Movie(*this);
+    Movie* temp_movie = new Movie(*this);
+    return temp_movie;
 }

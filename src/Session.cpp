@@ -52,16 +52,17 @@ Session::Session(const std::string &configFilePath) {
  * Copy all the values
  */
 Session::Session(const Session& other) {
-    activeUser = other.activeUser -> clone();
-    for (int i = 0; i < other.content.size(); i++){
-        content.push_back(other.content.at(i) -> clone());
+    std::string userName = other.activeUser->getName();
+    for (auto *x: other.content){
+        content.emplace_back(x->clone());
     }
-    for (int i = 0; i < other.actionsLog.size(); i++){
-        actionsLog.push_back(other.actionsLog.at(i) -> clone());
+    for (auto *x: other.actionsLog){
+        actionsLog.emplace_back(x->clone());
     }
     for (auto user = other.userMap.begin(); user != other.userMap.end(); ++user){
-        userMap.insert({user->first, user->second->clone()});
+        userMap.insert({user->first, user->second->clone(*this)});
     }
+    activeUser = findInUserMap(userName);
 }
 
 /*
@@ -85,36 +86,37 @@ Session::Session(Session &&other):content(other.content) , actionsLog(other.acti
 Session& Session::operator= (const Session& other)  {
     if ( this != &other )
     {
-        // Delete and create new activeUser
-        delete activeUser;
-        activeUser = other.activeUser->clone();
-
+        std:string userName = other.activeUser->getName();
         // Delete and create new contentList
         for (Watchable* w: content){
             delete w;
+            w = nullptr;
         }
         content.clear();
         for (int i = 0; i < other.content.size(); i++){
-            content.push_back(other.content.at(i) -> clone());
+            content.push_back(other.content[i] -> clone());
         }
-
         // Delete and create new actionsLog
         for (BaseAction* b: actionsLog) {
             delete b;
+            b = nullptr;
         }
         actionsLog.clear();
         for (int i = 0; i < other.actionsLog.size(); i++){
-            actionsLog.push_back(other.actionsLog.at(i) -> clone());
+            actionsLog.push_back(other.actionsLog[i] -> clone());
         }
-
         // Delete and create new userMap
         for (auto it = userMap.begin(); it != userMap.end(); ++it) {
             delete it->second;
+            userMap.erase(it->first);
         }
         userMap.clear();
         for (auto user = other.userMap.begin(); user != other.userMap.end(); ++user){
-            userMap.insert({user->first, user->second->clone()});
+            userMap.insert({user->first, user->second->clone(*this)});
         }
+        // Delete and create new activeUser
+        delete activeUser;
+        activeUser = findInUserMap(userName);
     }
 }
 
@@ -139,6 +141,7 @@ Session& Session::operator=(Session &&other){
         other.actionsLog.clear();
         for (auto it = other.userMap.begin(); it != other.userMap.end(); ++it) {
             delete it->second;
+            userMap.erase(it->first);
         }
         other.userMap.clear();
         other.activeUser= nullptr;
@@ -152,13 +155,13 @@ Session& Session::operator=(Session &&other){
  */
 Session::~Session() {
      for (int i=0; i<content.size();i++){
-         delete content.at(i);
-         content.at(i)= nullptr;
+         delete content[i];
+         content[i]= nullptr;
      }
      content.clear();
      for (int i=0; i<actionsLog.size();i++) {
-        delete actionsLog.at(i);
-        actionsLog.at(i)= nullptr;
+        delete actionsLog[i];
+        actionsLog[i]= nullptr;
      }
      actionsLog.clear();
      for (auto it = userMap.begin(); it != userMap.end(); ++it) {
@@ -166,6 +169,7 @@ Session::~Session() {
      }
      userMap.clear();
      activeUser= nullptr;
+
 }
 
 /*
@@ -174,30 +178,31 @@ Session::~Session() {
  */
 void Session::start() {
     cout << "SPLFLIX is now on!" << '\n';
-    User* defaultUser = new LengthRecommenderUser("default");
-    addToUserMap("default", defaultUser);
-    setActiveUser(defaultUser);
-
+    if (findInUserMap("default") == nullptr) {
+        User *defaultUser = new LengthRecommenderUser("default");
+        addToUserMap("default", defaultUser);
+        setActiveUser(defaultUser);
+    }
     std::string command;
     BaseAction* action;
     while (command != "exit") {
         cin >> command;
         if (command == "createuser") {
-            cin >> userName;
-            cin >> thirdParameter;
+            cin >> secondParameter; //userName
+            cin >> thirdParameter; //algo
             action = new CreateUser;
             action->act(*this);
         } else if (command == "changeuser") {
-            cin >> userName;
+            cin >> secondParameter; //userName
             action = new ChangeActiveUser;
             action->act(*this);
         } else if (command == "delete") {
-            cin >> userName;
-            action = new DeleteUser; // does this works?
+            cin >> secondParameter; //userName
+            action = new DeleteUser;
             action->act(*this);
         } else if (command == "dupuser") {
-            cin >> userName;
-            cin >> thirdParameter;
+            cin >> secondParameter; //old userName
+            cin >> thirdParameter; //new userName
             action = new DuplicateUser;
             action->act(*this);
         } else if (command == "content") {
@@ -207,11 +212,21 @@ void Session::start() {
             action = new PrintWatchHistory;
             action->act(*this);
         } else if (command == "watch") {
-            action = new Watch;
-            action->act(*this);
 
-            std::string answer;
-            if (answer== "y")
+            cin >> secondParameter; // content id
+            std::string answer="y";
+            while (answer == "y"){
+                action = new Watch;
+                action->act(*this);
+                Watchable* watched = content.at(std::stoi(secondParameter) - 1);
+                watched = watched->getNextWatchable(*this);
+                secondParameter=(std::to_string(watched->getId()+1));
+                std::cout << "We recommend watching " ;
+                std::cout << watched->toString();
+                std::cout << ", continue watching? [y/n]" << std::endl;
+                std::cin >> answer;
+
+            }
 
 
         } else if (command == "log") {
@@ -303,8 +318,8 @@ void Session::addToActionsLog(BaseAction* act){
  *
  * @return string of the user's name.
  */
-std::string Session::getUserName() {
-    return userName;
+std::string Session::getSecondParameter() {
+    return secondParameter;
 }
 
 /*
@@ -324,7 +339,6 @@ std::string Session::getThirdParameter() {
 std::vector<BaseAction *> Session::getActionLog() {
     return actionsLog;
 }
-
 
 
 

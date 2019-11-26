@@ -11,23 +11,38 @@ using namespace std;
 // User Constructor
 User::User(const std::string &name):name(name) {}
 
-// Copy Constructor
-//User::User(const User& other) : name(other.name)  {
-//    std::vector<Watchable*> history(other.history.begin(), other.history.end());
-//}
-//
-//copy assi
-//User& User::operator= (const User& other)  {
-//    if ( this != &other )
-//    {
-//        history = other.history;
-//    }
-//}
+//===============================================Rule of Three==========================================================
+
+ //Copy Constructor
+User::User(const User &other) : name(other.name) {
+     for (int i = 0; i < other.history.size(); i++){
+         Watchable* temp_watch = other.history[i] ;
+         history.push_back(temp_watch);
+     }
+}
+
+//copy Assignment
+User &User::operator=(const User &other) {
+    if (this != &other)
+    {
+        name = other.name;
+        // Delete and create new history
+        for (auto x: history) {
+          delete x;
+        }
+        history.clear();
+        for (int i = 0; i < other.history.size(); i++){
+            Watchable* temp = other.history[i];
+            history.push_back(temp);
+        }
+    }
+}
 
 User::~User() {
-
+    for (auto x: history){
+       x = nullptr;
+    }
     history.clear();
-
 }
 
 std::string User::getName() const {
@@ -41,7 +56,8 @@ std::vector<Watchable *> User::getHistory() {
 // TODO change this function to copy history
 void User::setHistory(std::vector<Watchable *> historyToCopy) {
     for (auto x: historyToCopy){
-        history.push_back(x);
+        Watchable* temp = x;
+        history.push_back(temp);
     }
 }
 
@@ -51,6 +67,7 @@ void User::addToHistory(Watchable *watchable) {
 
 void User::updateRec(Watchable *watchable) {}
 
+
 //==========================================Length Recommender User=====================================================
 
 LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
@@ -58,6 +75,8 @@ LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(nam
     averageTime=0;
     howManyMovies=0;
 }
+
+LengthRecommenderUser::~LengthRecommenderUser() {}
 
 Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
     int i = 0;
@@ -75,11 +94,6 @@ Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
         i++;
     }
     return rec;
-}
-
-std::string LengthRecommenderUser::getAlgo() const {
-//    return User::getAlgo();
-    return "len";
 }
 
 void LengthRecommenderUser::setHistory(std::vector<Watchable *> historyToCopy) {
@@ -100,9 +114,20 @@ User *LengthRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
-User *LengthRecommenderUser::clone() const {
-    return new LengthRecommenderUser(*this);
+User* LengthRecommenderUser::clone(Session &s) {
+    LengthRecommenderUser* temp_user = new LengthRecommenderUser(getName());
+    for (auto x: history) {
+        int id = x->getId();
+        temp_user->history.push_back(s.getContent().at(id));
+    }
+    temp_user->totalTime = totalTime;
+    temp_user->howManyMovies = howManyMovies;
+    temp_user->averageTime = averageTime;
+
+
+    return temp_user;
 }
+
 
 //===========================================Rerun Recommender User=====================================================
 
@@ -124,11 +149,6 @@ Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     return rec;
 }
 
-std::string RerunRecommenderUser::getAlgo() const {
-//    return User::getAlgo();
-    return "rer";
-}
-
 void RerunRecommenderUser::updateRec(Watchable *watchable) {
     histLength++;
 
@@ -142,8 +162,20 @@ User *RerunRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
-User *RerunRecommenderUser::clone() const {
-    return new RerunRecommenderUser(*this);
+User *RerunRecommenderUser::clone(Session &s) {
+    RerunRecommenderUser* temp_user = new RerunRecommenderUser(getName());
+    for (auto x: history) {
+        int id = x->getId();
+        temp_user->history.push_back(s.getContent().at(id));
+    }
+    temp_user->recIndex = recIndex;
+    temp_user->histLength = histLength;
+
+    return temp_user;
+}
+
+RerunRecommenderUser::~RerunRecommenderUser() {
+
 }
 
 //==========================================Genre Recommender User=====================================================
@@ -180,11 +212,6 @@ Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
     return nullptr;
 }
 
-std::string GenreRecommenderUser::getAlgo() const {
-//    return User::getAlgo();
-    return "gen";
-}
-
 void GenreRecommenderUser::updateRec(Watchable *watchable) {
     //TODO make it prettier and better
 
@@ -209,6 +236,25 @@ User *GenreRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
-User *GenreRecommenderUser::clone() const {
-    return new GenreRecommenderUser(*this);
+User *GenreRecommenderUser::clone(Session &s) {
+    GenreRecommenderUser* temp_user = new GenreRecommenderUser(getName());
+    for (auto x: history) {
+        int id = x->getId();
+        temp_user->history.push_back(s.getContent().at(id));
+    }
+    for (auto x : counterTag) {
+        temp_user->counterTag.insert(x);
+    }
+    for (auto x : tagsMap) {
+        temp_user->tagsMap.insert(x);
+    }
+    for (auto x : sortedTagsMap) {
+        temp_user->sortedTagsMap.insert(x);
+    }
+
+    return temp_user;
+}
+
+GenreRecommenderUser::~GenreRecommenderUser() {
+
 }

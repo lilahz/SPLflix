@@ -15,11 +15,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Session.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Session.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/User.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/User.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Watchable.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Watchable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Episode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Episode.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Movie.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Session.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Session.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Watchable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Watchable.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +50,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config1.json" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
@@ -148,5 +151,26 @@
     <MESSAGE value="Update new project files" />
     <MESSAGE value="try 1" />
     <option name="LAST_COMMIT_MESSAGE" value="try 1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Episode.cpp</url>
+          <line>21</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Action.cpp</url>
+          <line>282</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Session.cpp</url>
+          <line>86</line>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

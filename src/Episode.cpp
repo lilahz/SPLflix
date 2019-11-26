@@ -24,7 +24,7 @@ Watchable *Episode::getNextWatchable(Session &s) const {
         return s.getContent().at(nextEpisodeId);
     }
     else {
-        s.getActiveUser()->getRecommendation(s);
+        return s.getActiveUser()->getRecommendation(s);
     }
     return nullptr;
 }
@@ -39,5 +39,6 @@ std::string Episode::getSeriesName(){
 }
 
 Watchable *Episode::clone() const {
-    return new Episode(*this);
+    Watchable* temp = new Episode(*this);
+    return temp;
 }
