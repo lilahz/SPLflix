@@ -37,7 +37,6 @@ private:
 class LengthRecommenderUser : public User {
 public:
     LengthRecommenderUser(const std::string& name);
-    ~LengthRecommenderUser();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
     virtual std::string getAlgo() const;

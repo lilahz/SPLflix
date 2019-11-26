@@ -13,11 +13,15 @@ int main(int argc, char** argv){
 	Session s(argv[1]);
 	s.start();
 
+
 //	Session s2("../config2.json");
 //	s2.start();
-//
-	Session s2 = std::move(s);
-	Session s3(argv[1]);
-	s3 = std::move(s2);
-	s3.start();
+
+//  Move constructor
+//	Session s2 = std::move(s);
+//	Session s3(argv[1]);
+
+//  Move Assignment
+//	s3 = std::move(s2);
+//	s3.start();
 }

@@ -49,7 +49,7 @@ Session::Session(const std::string &configFilePath) {
 
 /*
  * Copy Constructor.
- * Copy all the
+ * Copy all the values
  */
 Session::Session(const Session& other) {
     activeUser = other.activeUser -> clone();
@@ -66,7 +66,8 @@ Session::Session(const Session& other) {
 
 /*
  * Move Constructor.
- * Moves all pointers from the old Session to point on this Session information, then delete the pointers.
+ * Moves all pointers from the old Session to point on this Session information, then delete the pointers to the
+ * old Session
  */
 Session::Session(Session &&other):content(other.content) , actionsLog(other.actionsLog) , userMap(other.userMap)
 , activeUser(other.activeUser){
@@ -150,18 +151,21 @@ Session& Session::operator=(Session &&other){
  * Deletes content, actionLog and userMap.
  */
 Session::~Session() {
-     for (Watchable* w: content){
-         delete w;
+     for (int i=0; i<content.size();i++){
+         delete content.at(i);
+         content.at(i)= nullptr;
      }
      content.clear();
-     for (BaseAction* b: actionsLog) {
-         delete b;
+     for (int i=0; i<actionsLog.size();i++) {
+        delete actionsLog.at(i);
+        actionsLog.at(i)= nullptr;
      }
      actionsLog.clear();
      for (auto it = userMap.begin(); it != userMap.end(); ++it) {
          delete it->second;
      }
      userMap.clear();
+     activeUser= nullptr;
 }
 
 /*
@@ -205,6 +209,11 @@ void Session::start() {
         } else if (command == "watch") {
             action = new Watch;
             action->act(*this);
+
+            std::string answer;
+            if (answer== "y")
+
+
         } else if (command == "log") {
             action = new PrintActionsLog;
             action->act(*this);
@@ -243,6 +252,7 @@ void Session::setActiveUser(User* user) {
  * @param name the name of the user to delete.
  */
 void Session::deleteFromUserMap(std::string name) {
+    delete findInUserMap(name);
     userMap.erase(name);
 }
 

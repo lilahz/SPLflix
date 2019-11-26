@@ -25,9 +25,7 @@ User::User(const std::string &name):name(name) {}
 //}
 
 User::~User() {
-    for (Watchable* w: history){
-        delete w;
-    }
+
     history.clear();
 
 }
@@ -102,13 +100,9 @@ User *LengthRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
-LengthRecommenderUser::~LengthRecommenderUser() {}
-
 User *LengthRecommenderUser::clone() const {
     return new LengthRecommenderUser(*this);
 }
-
-
 
 //===========================================Rerun Recommender User=====================================================
 

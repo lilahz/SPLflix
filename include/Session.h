@@ -35,7 +35,7 @@ private:
     std::vector<BaseAction*> actionsLog;
     std::unordered_map<std::string,User*> userMap;
     User* activeUser;
-
+    // Our own fields
     std::string userName;
     std::string thirdParameter;
 };

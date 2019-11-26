@@ -28,7 +28,6 @@ private:
 class Movie : public Watchable{
 public:
     Movie(long id, const std::string& name, int length, const std::vector<std::string>& tags);
-    void operator= (const Movie& other);
     virtual std::string toString() const;
     virtual Watchable* getNextWatchable(Session&) const;
     virtual Watchable* clone() const;

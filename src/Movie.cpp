@@ -10,10 +10,6 @@ std::string Movie::toString() const {
     return name;
 }
 
-void Movie::operator= (const Movie &other) {
-
-}
-
 Watchable *Movie::getNextWatchable(Session &s) const {
     return s.getActiveUser()->getRecommendation(s);
 }
