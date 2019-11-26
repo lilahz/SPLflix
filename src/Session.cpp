@@ -47,7 +47,10 @@ Session::Session(const std::string &configFilePath) {
 
 //===================================================Rule of Five=======================================================
 
-// copy constructor
+/*
+ * Copy Constructor.
+ * Copy all the
+ */
 Session::Session(const Session& other) {
     activeUser = other.activeUser -> clone();
     for (int i = 0; i < other.content.size(); i++){
@@ -61,7 +64,10 @@ Session::Session(const Session& other) {
     }
 }
 
-// Move constructor
+/*
+ * Move Constructor.
+ * Moves all pointers from the old Session to point on this Session information, then delete the pointers.
+ */
 Session::Session(Session &&other):content(other.content) , actionsLog(other.actionsLog) , userMap(other.userMap)
 , activeUser(other.activeUser){
     //Delete old Session
@@ -71,7 +77,10 @@ Session::Session(Session &&other):content(other.content) , actionsLog(other.acti
     other.activeUser=nullptr ;
 }
 
-// Copy Assignment Operator
+/*
+ * Copy Assignment Operator.
+ * Overrides all the information of the other Session with this Session's information.
+ */
 Session& Session::operator= (const Session& other)  {
     if ( this != &other )
     {
@@ -107,10 +116,13 @@ Session& Session::operator= (const Session& other)  {
         }
     }
 }
-// Move Assignment Operator
+
+/* Move Assignment Operator
+ * Moves the pointers from the other Session to this Session, and delete all values saved in the other Session.
+ */
 Session& Session::operator=(Session &&other){
     if ( this != &other ){
-        //Move pointers
+        // Move pointers
         content=other.content;
         actionsLog=other.actionsLog;
         userMap=other.userMap;
@@ -129,13 +141,14 @@ Session& Session::operator=(Session &&other){
         }
         other.userMap.clear();
         other.activeUser= nullptr;
-
-
     }
 }
 
 
-
+/*
+ * Session Destructor.
+ * Deletes content, actionLog and userMap.
+ */
 Session::~Session() {
      for (Watchable* w: content){
          delete w;
@@ -151,6 +164,10 @@ Session::~Session() {
      userMap.clear();
 }
 
+/*
+ * Starts the program's main loop and calls all the actions by the
+ * given command.
+ */
 void Session::start() {
     cout << "SPLFLIX is now on!" << '\n';
     User* defaultUser = new LengthRecommenderUser("default");
@@ -166,7 +183,6 @@ void Session::start() {
             cin >> thirdParameter;
             action = new CreateUser;
             action->act(*this);
-
         } else if (command == "changeuser") {
             cin >> userName;
             action = new ChangeActiveUser;
@@ -192,8 +208,7 @@ void Session::start() {
         } else if (command == "log") {
             action = new PrintActionsLog;
             action->act(*this);
-        }
-        else if (command == "exit") {
+        } else if (command == "exit") {
             action = new Exit;
             action->act(*this);
             command = "exit";
@@ -201,27 +216,60 @@ void Session::start() {
     }
 }
 
+//===============================================Our Own Functions======================================================
+
+/*
+ * Addes users to userMap vector.
+ * @param name the name of the user to add to the map.
+ * @param user pointer to the user to add.
+ */
 void Session::addToUserMap(std::string name, User* user) {
     std::pair<std::string, User*> temp_pair(name,user);
     userMap.insert(temp_pair);
 }
 
+/*
+ * Changes the active user to the given user
+ *
+ * @param user pointer to the user which we want to make active user
+ */
 void Session::setActiveUser(User* user) {
     activeUser = user;
 }
 
+/*
+ * Delete user from userMap vector.
+ *
+ * @param name the name of the user to delete.
+ */
 void Session::deleteFromUserMap(std::string name) {
     userMap.erase(name);
 }
 
+/*
+ * Returns content.
+ *
+ * @return content vector.
+ */
 std::vector<Watchable *> Session::getContent() {
     return content;
 }
 
+/*
+ * Returns the currently active user.
+ *
+ * @return pointer to the active user.
+ */
 User *Session::getActiveUser() {
     return activeUser;
 }
 
+/*
+ * Find in the userMap the user by name.
+ *
+ * @param name of the user to find.
+ * @return pointer to the wanted user. If user not found return nullptr
+ */
 User *Session::findInUserMap(std::string name) {
     for (auto x: userMap) {
         if (x.first == name) {
@@ -231,18 +279,38 @@ User *Session::findInUserMap(std::string name) {
     return nullptr;
 }
 
+/*
+ * Add new action to the actionsLog vector.
+ *
+ * @param pointer to action to add to the vector.
+ */
 void Session::addToActionsLog(BaseAction* act){
     actionsLog.push_back(act);
 }
 
+/*
+ * Get user name.
+ *
+ * @return string of the user's name.
+ */
 std::string Session::getUserName() {
     return userName;
 }
 
+/*
+ * Return the third parameter received by the cin.
+ *
+ * @return string of the third parameter entered by the console.
+ */
 std::string Session::getThirdParameter() {
     return thirdParameter;
 }
 
+/*
+ * Get actionsLog vector.
+ *
+ * @return actionsLog vector.
+ */
 std::vector<BaseAction *> Session::getActionLog() {
     return actionsLog;
 }

@@ -19,6 +19,7 @@ public:
     Session& operator=(Session &&other); // Move Assignment Operator
     ~Session(); // Destructor
     void start();
+    // Our own functions
     void addToUserMap(std::string name,User* user);
     User* findInUserMap(std::string name);
     void setActiveUser(User *user);
