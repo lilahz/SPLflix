@@ -12,11 +12,14 @@ class Watchable;
 
 class Session{
 public:
-    Session(const std::string &configFilePath);
-    Session& operator= (const Session& other)  ;
-    Session(const Session& other);
-    ~Session();
+    Session(const std::string &configFilePath); // Session Constructor
+    Session(const Session& other); // Copy Constructor
+    Session(Session &&other); // Move Constructor
+    Session& operator= (const Session& other); // Copy Assignment Operator
+    Session& operator=(Session &&other); // Move Assignment Operator
+    ~Session(); // Destructor
     void start();
+    // Our own functions
     void addToUserMap(std::string name,User* user);
     User* findInUserMap(std::string name);
     void setActiveUser(User *user);
@@ -32,6 +35,7 @@ private:
     std::vector<BaseAction*> actionsLog;
     std::unordered_map<std::string,User*> userMap;
     User* activeUser;
+
     std::string userName;
     std::string thirdParameter;
 };

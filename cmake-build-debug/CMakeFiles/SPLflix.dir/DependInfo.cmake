@@ -12,7 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/lilahz/CLionProjects/SPLflix/src/User.cpp" "/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/SPLflix.dir/src/User.cpp.o"
   "/Users/lilahz/CLionProjects/SPLflix/src/Watchable.cpp" "/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/SPLflix.dir/src/Watchable.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

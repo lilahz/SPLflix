@@ -9,10 +9,13 @@
 using namespace std;
 
 // User Constructor
-// Initialize name string
 User::User(const std::string &name):name(name) {}
 
-
+// Copy Constructor
+//User::User(const User& other) : name(other.name)  {
+//    std::vector<Watchable*> history(other.history.begin(), other.history.end());
+//}
+//
 //copy assi
 //User& User::operator= (const User& other)  {
 //    if ( this != &other )
@@ -21,18 +24,13 @@ User::User(const std::string &name):name(name) {}
 //    }
 //}
 
-// copy cons
-User::User(const User& other) : name(other.name)  {
-    std::vector<Watchable*> history(other.history.begin(), other.history.end());
-}
-
 User::~User() {
     for (Watchable* w: history){
         delete w;
     }
     history.clear();
+
 }
-//Watchable* User::getRecommendation(Session &s) {}
 
 std::string User::getName() const {
     return name;
@@ -40,14 +38,6 @@ std::string User::getName() const {
 
 std::vector<Watchable *> User::getHistory() {
     return history;
-}
-
-//std::string User::getAlgo() {
-//    return userAlgo;
-//}
-
-void User::setAlgo(std::string algo) {
-    userAlgo=algo;
 }
 
 // TODO change this function to copy history
@@ -66,7 +56,6 @@ void User::updateRec(Watchable *watchable) {}
 //==========================================Length Recommender User=====================================================
 
 LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
-    setAlgo("len");
     totalTime=0;
     averageTime=0;
     howManyMovies=0;
@@ -113,17 +102,31 @@ User *LengthRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
+LengthRecommenderUser::~LengthRecommenderUser() {}
+
+User *LengthRecommenderUser::clone() const {
+    return new LengthRecommenderUser(*this);
+}
+
+
+
 //===========================================Rerun Recommender User=====================================================
 
 RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
-    setAlgo("rer");
-    histLength=0;
+    recIndex = 0;
+    histLength = 0;
 }
 
 Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     Watchable* rec;
-    watchIndex = history.at(history.size()-1)->getId();
-    rec = getHistory().at((watchIndex+1)%histLength);
+    if (recIndex == 0){
+        rec = history.at(0);
+        recIndex++;
+    }
+    else {
+        rec = history.at((recIndex+1)%histLength);
+        recIndex = (recIndex+1)%histLength;
+    }
     return rec;
 }
 
@@ -134,6 +137,7 @@ std::string RerunRecommenderUser::getAlgo() const {
 
 void RerunRecommenderUser::updateRec(Watchable *watchable) {
     histLength++;
+
 }
 
 User *RerunRecommenderUser::duplicateUser(const std::string &name) {
@@ -144,12 +148,14 @@ User *RerunRecommenderUser::duplicateUser(const std::string &name) {
     return newUser;
 }
 
+User *RerunRecommenderUser::clone() const {
+    return new RerunRecommenderUser(*this);
+}
+
 //==========================================Genre Recommender User=====================================================
 // TODO possible to make it faster by deleting and inserting back to the multimap
 // https://stackoverflow.com/questions/11343822/how-to-replace-key-value-in-a-std-multimap
-GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name) {
-    setAlgo("gen");
-}
+GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name) {}
 
 Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
     // Sorting the tags by appearance
@@ -207,4 +213,8 @@ User *GenreRecommenderUser::duplicateUser(const std::string &name) {
         newUser->addToHistory(x);
     }
     return newUser;
+}
+
+User *GenreRecommenderUser::clone() const {
+    return new GenreRecommenderUser(*this);
 }
