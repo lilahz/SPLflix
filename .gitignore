@@ -1,5 +1,5 @@
 #Git ignore file
 
-cmake-build-debug
+cmake-build-debug/*
 CMakeLists.txt
-.idea
+.idea/*
