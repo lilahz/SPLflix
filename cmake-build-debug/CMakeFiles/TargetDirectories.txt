@@ -1,3 +1,0 @@
-/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/lilahz/CLionProjects/SPLflix/cmake-build-debug/CMakeFiles/SPLflix.dir
