@@ -12,7 +12,8 @@ using namespace std;
 using json = nlohmann::json;
 
 // Session Constructor
-Session::Session(const std::string &configFilePath) {
+Session::Session(const std::string &configFilePath) : content(), actionsLog(), userMap(), activeUser(),
+    secondParameter(), thirdParameter() {
     activeUser = nullptr;  // TODO check if still needed to initialize
     std::ifstream i(configFilePath);
     json configFile;
@@ -51,7 +52,8 @@ Session::Session(const std::string &configFilePath) {
  * Copy Constructor.
  * Copy all the values
  */
-Session::Session(const Session& other) {
+Session::Session(const Session& other) : content(), actionsLog(), userMap(), activeUser(), secondParameter(),
+    thirdParameter() {
     std::string userName = other.activeUser->getName();
     for (auto *x: other.content){
         content.emplace_back(x->clone());
@@ -70,13 +72,13 @@ Session::Session(const Session& other) {
  * Moves all pointers from the old Session to point on this Session information, then delete the pointers to the
  * old Session
  */
-Session::Session(Session &&other):content(other.content) , actionsLog(other.actionsLog) , userMap(other.userMap)
-, activeUser(other.activeUser){
+Session::Session(Session &&other) : content(other.content), actionsLog(other.actionsLog), userMap(other.userMap),
+    activeUser(other.activeUser), secondParameter(), thirdParameter() {
     //Delete old Session
     other.content.clear();
     other.actionsLog.clear();
     other.userMap.clear();
-    other.activeUser=nullptr ;
+    other.activeUser = nullptr ;
 }
 
 /*
@@ -86,14 +88,14 @@ Session::Session(Session &&other):content(other.content) , actionsLog(other.acti
 Session& Session::operator= (const Session& other)  {
     if ( this != &other )
     {
-        std:string userName = other.activeUser->getName();
+        string userName = other.activeUser->getName();
         // Delete and create new contentList
         for (Watchable* w: content){
             delete w;
             w = nullptr;
         }
         content.clear();
-        for (int i = 0; i < other.content.size(); i++){
+        for (int unsigned i = 0; i < other.content.size(); i++){
             content.push_back(other.content[i] -> clone());
         }
         // Delete and create new actionsLog
@@ -102,7 +104,7 @@ Session& Session::operator= (const Session& other)  {
             b = nullptr;
         }
         actionsLog.clear();
-        for (int i = 0; i < other.actionsLog.size(); i++){
+        for (int unsigned i = 0; i < other.actionsLog.size(); i++){
             actionsLog.push_back(other.actionsLog[i] -> clone());
         }
         // Delete and create new userMap
@@ -118,6 +120,7 @@ Session& Session::operator= (const Session& other)  {
         delete activeUser;
         activeUser = findInUserMap(userName);
     }
+    return *this;
 }
 
 /* Move Assignment Operator
@@ -147,11 +150,11 @@ Session& Session::operator=(Session &&other){
         activeUser= nullptr;
 
         // Move pointers
-        for (int i = 0; i < other.content.size(); i++){
+        for (int unsigned i = 0; i < other.content.size(); i++){
             content.push_back(other.content[i]);
             other.content[i] = nullptr;
         }
-        for (int i = 0; i < other.actionsLog.size(); i++){
+        for (int unsigned i = 0; i < other.actionsLog.size(); i++){
             actionsLog.push_back(other.actionsLog[i]);
             other.actionsLog[i] = nullptr;
         }
@@ -159,12 +162,8 @@ Session& Session::operator=(Session &&other){
             userMap.insert({user->first, user->second});
             other.userMap.at(user->first) = nullptr;
         }
-        activeUser=other.activeUser;
+        activeUser = other.activeUser;
         other.activeUser = nullptr;
-
-
-
-
     }
     return *this;
 }
@@ -175,21 +174,21 @@ Session& Session::operator=(Session &&other){
  * Deletes content, actionLog and userMap.
  */
 Session::~Session() {
-     for (int i=0; i<content.size();i++){
+     for (int unsigned i = 0; i < content.size(); i++){
          delete content[i];
-         content[i]= nullptr;
+         content[i] = nullptr;
      }
      content.clear();
-     for (int i=0; i<actionsLog.size();i++) {
+     for (int unsigned i = 0; i < actionsLog.size(); i++) {
         delete actionsLog[i];
-        actionsLog[i]= nullptr;
+        actionsLog[i] = nullptr;
      }
      actionsLog.clear();
      for (auto it = userMap.begin(); it != userMap.end(); ++it) {
          delete it->second;
      }
      userMap.clear();
-     activeUser= nullptr;
+     activeUser = nullptr;
 
 }
 
@@ -246,9 +245,7 @@ void Session::start() {
                 std::cout << watched->toString();
                 std::cout << ", continue watching? [y/n]" << std::endl;
                 std::cin >> answer;
-
             }
-
 
         } else if (command == "log") {
             action = new PrintActionsLog;

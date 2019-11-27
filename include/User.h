@@ -17,7 +17,7 @@ public:
     User(const std::string& name);
     User(const User& other); // Copy Constructor
     User& operator= (const User& other); // Copy Assignment
-    ~User();
+    virtual ~User();
     virtual Watchable* getRecommendation(Session& s) = 0;
     std::string getName() const;
     std::vector<Watchable*> getHistory();
@@ -39,7 +39,7 @@ public:
     LengthRecommenderUser(const std::string& name);
     LengthRecommenderUser(const LengthRecommenderUser& other);
     LengthRecommenderUser& operator= (const LengthRecommenderUser& other);
-    virtual ~LengthRecommenderUser();
+     ~LengthRecommenderUser();
     virtual void setHistory(std::vector<Watchable*> historyToCopy);
     virtual Watchable* getRecommendation(Session& s);
     virtual void updateRec(Watchable* watchable);
@@ -60,7 +60,7 @@ public:
     RerunRecommenderUser(const std::string& name);
     RerunRecommenderUser(const RerunRecommenderUser& other);
     RerunRecommenderUser& operator= (const RerunRecommenderUser& other);
-    virtual ~RerunRecommenderUser();
+     ~RerunRecommenderUser();
     virtual Watchable* getRecommendation(Session& s);
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;
@@ -77,8 +77,7 @@ public:
     GenreRecommenderUser(const std::string& name);
     GenreRecommenderUser(const GenreRecommenderUser& other);
     GenreRecommenderUser& operator= (const GenreRecommenderUser& other);
-    virtual ~GenreRecommenderUser();
-
+    ~GenreRecommenderUser();
     virtual Watchable* getRecommendation(Session& s);
     virtual void updateRec(Watchable* watchable);
     User* duplicateUser(const std::string& name) override;

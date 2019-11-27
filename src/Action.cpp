@@ -4,10 +4,9 @@
 
 using namespace std;
 
-BaseAction::BaseAction() {
-    status= PENDING;
-}
+BaseAction::BaseAction() : errorMsg(), status(PENDING) {}
 
+BaseAction::~BaseAction() {}
 //============================================Action Class Methods======================================================
 
 /*
@@ -56,6 +55,8 @@ std::string BaseAction::getStatusString(ActionStatus status) const {
     }
     else return nullptr;
 }
+
+
 
 //=================================================Create User==========================================================
 // TODO: think if we need to keep the constructors.
@@ -246,7 +247,7 @@ BaseAction *DuplicateUser::clone() const {
  * (default)
  */
 void PrintContentList::act(Session &sess) {
-    for (int i=0; i<sess.getContent().size(); i++) {
+    for (int unsigned i = 0; i<sess.getContent().size(); i++) {
         Watchable *print = sess.getContent().at(i);
         std::cout << print->getId()+1<< ". " << print->toString()<< " " << print->getLength()
         << " minutes" << " [" << print->tagsToString()+"]" << std::endl;
@@ -281,7 +282,7 @@ BaseAction *PrintContentList::clone() const {
  */
 void PrintWatchHistory::act(Session &sess) {
     std::cout << "Watch history for " << sess.getActiveUser()->getName() << std::endl;
-    for (int i=0; i<sess.getActiveUser()->getHistory().size();i++){
+    for (int unsigned i=0; i<sess.getActiveUser()->getHistory().size();i++){
        std::cout << i+1 <<". " << sess.getActiveUser()->getHistory().at(i)->toString() << std::endl;
     }
     complete();
@@ -315,10 +316,10 @@ void Watch::act(Session &sess) {
 
     std::string stringid;
     stringid = sess.getSecondParameter();
-    int intid;
+    int unsigned intid;
     Watchable* watched;
     intid = std::stoi(stringid) - 1;
-    if (intid < 0 | intid > sess.getContent().size() - 1)
+    if ((intid < 0) | (intid > sess.getContent().size() - 1))
     {
         error("Invalid input");
         cout << "Error: " << getErrorMsg() << endl;

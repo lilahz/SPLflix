@@ -18,3 +18,7 @@ Watchable *Movie::clone() const {
     Movie* temp_movie = new Movie(*this);
     return temp_movie;
 }
+
+std::string Movie::getName() {
+    return name;
+}

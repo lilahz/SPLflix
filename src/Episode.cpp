@@ -2,10 +2,8 @@
 #include "../include/Session.h"
 
 Episode::Episode(long id, const std::string &seriesName, int length, int season, int episode,
-                 const std::vector<std::string> &tags):Watchable(id,length,tags),season(season),
-                 episode(episode),seriesName(seriesName), eps(true), nextEpisodeId(id+1) {
-
-}
+                 const std::vector<std::string> &tags) : Watchable(id,length,tags), seriesName(seriesName),
+                 season(season), episode(episode), nextEpisodeId(id+1), eps(true) {}
 
 std::string Episode::toString() const {
     std::string seasonString =std::to_string(season);
@@ -20,7 +18,7 @@ std::string Episode::toString() const {
 
 Watchable *Episode::getNextWatchable(Session &s) const {
     // If it's an episode and not the last episode of the series
-    if (seriesName ==  s.getContent().at(nextEpisodeId)->getSeriesName()) {
+    if (seriesName ==  s.getContent().at(nextEpisodeId)->getName()) {
         return s.getContent().at(nextEpisodeId);
     }
     else {
@@ -33,7 +31,7 @@ bool Episode::isEpisode(){
      return eps;
 }
 
-std::string Episode::getSeriesName(){
+std::string Episode::getName(){
     return seriesName;
 
 }

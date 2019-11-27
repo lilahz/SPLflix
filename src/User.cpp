@@ -5,16 +5,15 @@
 
 #include <algorithm>
 
-
 using namespace std;
 
 // User Constructor
-User::User(const std::string &name):name(name) {}
+User::User(const std::string &name): history(), name(name) {}
 
 //===============================================Rule of Three==========================================================
 
  //Copy Constructor
-User::User(const User &other) : name(other.name) {
+User::User(const User &other) : history(), name(other.name) {
      for (auto *x: other.history){
          history.push_back(x->clone());
      }
@@ -31,16 +30,15 @@ User &User::operator=(const User &other) {
             w = nullptr;
         }
         history.clear();
-        for (int i = 0; i < other.history.size(); i++){
+        for (int unsigned i = 0; i < other.history.size(); i++){
             history.push_back(other.history[i] -> clone());
         }
     }
+    return *this;
 }
 
 User::~User() {
-    for (auto x: history){
-       delete x;
-    }
+
     history.clear();
 }
 
@@ -60,8 +58,8 @@ void User::setHistory(std::vector<Watchable *> historyToCopy) {
     }
 }
 
-void User::addToHistory(Watchable *watchable) {
-    history.push_back(watchable);
+void User::addToHistory(Watchable* watchable) {
+        history.push_back(watchable);
 }
 
 void User::updateRec(Watchable *watchable) {}
@@ -70,39 +68,34 @@ void User::updateRec(Watchable *watchable) {}
 //==========================================Length Recommender User=====================================================
 
 
-LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
-    totalTime=0;
-    averageTime=0;
-    howManyMovies=0;
-}
+LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name), totalTime(0),
+    howManyMovies(0), averageTime(0) {}
 
 //Copy constructor
-LengthRecommenderUser::LengthRecommenderUser(const LengthRecommenderUser& other) : User(other) {
-    totalTime = other.totalTime;
-    howManyMovies = other.howManyMovies;
-    averageTime = other.averageTime;
-}
+LengthRecommenderUser::LengthRecommenderUser(const LengthRecommenderUser& other) : User(other),
+    totalTime(other.totalTime), howManyMovies(other.howManyMovies), averageTime(other.averageTime) {}
+
 //Copy Assignment
 LengthRecommenderUser &LengthRecommenderUser::operator=(const LengthRecommenderUser &other) {
     User::operator=(other);
     totalTime = other.totalTime;
     howManyMovies = other.howManyMovies;
     averageTime = other.averageTime;
-
+    return *this;
 }
 
 LengthRecommenderUser::~LengthRecommenderUser() {}
 
 Watchable *LengthRecommenderUser::getRecommendation(Session &s) {
-    int i = 0;
+    int unsigned i = 0;
     Watchable* rec;
-    long min = INTMAX_MAX;
+    long unsigned min = INTMAX_MAX;
     while (i<s.getContent().size()){
         if (std::find(history.begin(), history.end(), s.getContent().at(i)) == history.end()) {
             Watchable* temp = s.getContent().at(i);
-            int len = temp->getLength();
-            if (std::abs(len-averageTime) < min){
-                min = std::abs(len-averageTime);
+            int unsigned len = temp->getLength();
+            if (unsigned(std::abs((long)len-averageTime)) < min){
+                min = std::abs((long)len-averageTime);
                 rec = temp;
             }
         }
@@ -147,13 +140,10 @@ User* LengthRecommenderUser::clone(Session &s) {
 
 //===========================================Rerun Recommender User=====================================================
 
-RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
-    recIndex = 0;
-    histLength = 0;
-}
+RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name), recIndex(0), histLength(0) {}
 
 //Copy constructor
-RerunRecommenderUser::RerunRecommenderUser(const RerunRecommenderUser& other) : User(other) {
+RerunRecommenderUser::RerunRecommenderUser(const RerunRecommenderUser& other) : User(other), recIndex(0), histLength(0){
     recIndex = other.recIndex;
     histLength = other.histLength;
 }
@@ -162,7 +152,7 @@ RerunRecommenderUser &RerunRecommenderUser::operator=(const RerunRecommenderUser
     User::operator=(other);
     recIndex = other.recIndex;
     histLength = other.histLength;
-
+    return *this;
 }
 
 RerunRecommenderUser::~RerunRecommenderUser()  {}
@@ -196,7 +186,7 @@ User *RerunRecommenderUser::duplicateUser(const std::string &name) {
 User *RerunRecommenderUser::clone(Session &s) {
     RerunRecommenderUser* temp_user = new RerunRecommenderUser(getName());
     for (auto x: history) {
-        int id = x->getId();
+        int unsigned id = x->getId();
         temp_user->history.push_back(s.getContent().at(id));
     }
     temp_user->recIndex = recIndex;
@@ -210,10 +200,12 @@ User *RerunRecommenderUser::clone(Session &s) {
 //==========================================Genre Recommender User=====================================================
 // TODO possible to make it faster by deleting and inserting back to the multimap
 // https://stackoverflow.com/questions/11343822/how-to-replace-key-value-in-a-std-multimap
-GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name) {}
+GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name), counterTag(), tagsMap(),
+    sortedTagsMap() {}
 
 //Copy constructor
-GenreRecommenderUser::GenreRecommenderUser(const GenreRecommenderUser& other) : User(other) {
+GenreRecommenderUser::GenreRecommenderUser(const GenreRecommenderUser& other) : User(other), counterTag(), tagsMap(),
+    sortedTagsMap() {
     for (auto x : other.counterTag){
         counterTag.insert(x);
     }
@@ -223,43 +215,38 @@ GenreRecommenderUser::GenreRecommenderUser(const GenreRecommenderUser& other) : 
     for (auto x : other.sortedTagsMap){
         sortedTagsMap.insert(x);
     }
-
-
 }
 //Copy Assignment
 GenreRecommenderUser &GenreRecommenderUser::operator=(const GenreRecommenderUser &other) {
-    User::operator=(other);
-    for (auto x : other.counterTag){
+    User::operator = (other);
+    for (auto x: other.counterTag){
         counterTag.insert(x);
     }
-    for (auto x : other.tagsMap){
+    for (auto x: other.tagsMap){
         tagsMap.insert(x);
     }
-    for (auto x : other.sortedTagsMap){
+    for (auto x: other.sortedTagsMap){
         sortedTagsMap.insert(x);
     }
-
+    return *this;
 }
 
 Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
     // Sorting the tags by appearance
     for (auto x: counterTag) {
-        std::pair<int, std::string> temp_pair(x.second, x.first);
-        tagsMap.insert(temp_pair);
+        tagsMap.insert(make_pair(x.second,x.first));
     }
     // Sorting the tags by lex
     for (auto x: tagsMap) {
-        std::pair<std::string, int> temp_pair(x.second, x.first);
-        sortedTagsMap.insert(temp_pair);
+        sortedTagsMap.insert(make_pair(x.second,x.first));
     }
     // Searching the relevant tag
     for (auto x: sortedTagsMap) {
         std::string tag = x.first;
-
-        for (int i = 0; i < s.getContent().size(); i++) {
-            if (std::find(history.begin(), history.end(), s.getContent().at(i)) == history.end()) {
+        for (int unsigned i = 0; i < s.getContent().size(); i++) {
+            if (std::find(history.begin(), history.end() , s.getContent().at(i)) == history.end()) {
                 std::vector<std::string> temp_v = s.getContent().at(i)->getTags();
-                for (auto str: temp_v) {
+                for (auto str : temp_v) {
                     if (str == tag) {
                         return s.getContent().at(i);
                     }
@@ -267,6 +254,7 @@ Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
             }
         }
     }
+
     return nullptr;
 }
 
@@ -274,14 +262,13 @@ void GenreRecommenderUser::updateRec(Watchable *watchable) {
     //TODO make it prettier and better
 
     // Updating counter for each tag in the unordered map
-    for (int i=0;i<watchable->getTags().size();i++) {
+    for (int unsigned i = 0; i < watchable->getTags().size(); i++) {
         std::string temp_tag = watchable->getTags().at(i);
         if (counterTag.find(temp_tag) != counterTag.end()) {
             counterTag.at(temp_tag)++;
         }
         else {
-            std::pair<std::string, int> temp_pair(temp_tag, 1);
-            counterTag.insert(temp_pair);
+            counterTag.insert(make_pair(temp_tag,1));
         }
    }
 }
@@ -314,5 +301,7 @@ User *GenreRecommenderUser::clone(Session &s) {
 }
 
 GenreRecommenderUser::~GenreRecommenderUser() {
-
+    tagsMap.clear();
+    sortedTagsMap.clear();
+    counterTag.clear();
 }

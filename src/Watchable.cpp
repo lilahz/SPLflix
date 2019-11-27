@@ -19,13 +19,13 @@ int Watchable::getId() {
 }
 
 std::string Watchable::tagsToString() {
-    int i = 0;
+    int unsigned i = 0;
     std::string tagString;
     while (i < tags.size()) {
         tagString += tags.at(i);
         i++;
-        if (i< tags.size())
-            tagString+=", ";
+        if (i < tags.size())
+            tagString += ", ";
     }
     return tagString;
 }
@@ -34,7 +34,9 @@ std::vector<std::string> Watchable::getTags() {
     return tags;
 }
 
-std::string Watchable::getSeriesName() {}
+std::string Watchable::getName() {
+    return nullptr;
+}
 
 
 

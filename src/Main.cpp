@@ -12,19 +12,19 @@ int main(int argc, char** argv){
 		return 0;
 	}
 
-    // Copy Constructor test
+ //   // Copy Constructor test
 //    Session* s = new Session(argv[1]);
 //	s->start();
-//	delete(s);
-//    Session s2= *s;
-//    delete(s);
+//
+//   Session s2 = *s;
+//   delete(s);
 //    s2.start();
 
 
 
 //    // Copy Assignment test
-//    Session s(argv[1]);
-//	  s.start();
+    Session s(argv[1]);
+	  s.start();
 //    Session s2(argv[1]);
 //    s2 = s;
 //    s2.start();
@@ -47,14 +47,14 @@ int main(int argc, char** argv){
 //	cout << x.getHistory().at(0)->toString();
 //	delete(s);
 
-	// user copy assignment
-	GenreRecommenderUser lil("lilah");
-	GenreRecommenderUser ofeer("ofeer");
-	lil.addToHistory(new Movie(5, "harry", 127, {"potter"}));
-	ofeer = lil;
-	cout << ofeer.getName() << endl;
-	cout << ofeer.getHistory().at(0)->toString() << endl;
-
-
-
+//	// user copy assignment
+//	GenreRecommenderUser lil("lilah");
+//	GenreRecommenderUser ofeer("ofeer");
+//	lil.addToHistory(new Movie(5, "harry", 127, {"potter"}));
+//	ofeer = lil;
+//	cout << ofeer.getName() << endl;
+//	cout << ofeer.getHistory().at(0)->toString() << endl;
+//
+//
+return 0;
 }
