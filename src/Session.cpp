@@ -125,27 +125,48 @@ Session& Session::operator= (const Session& other)  {
  */
 Session& Session::operator=(Session &&other){
     if ( this != &other ){
-        // Move pointers
-        content=other.content;
-        actionsLog=other.actionsLog;
-        userMap=other.userMap;
-        activeUser=other.activeUser;
-        // Delete old Session
-        for (Watchable* w: other.content){
-            delete w;
-        }
-        other.content.clear();
-        for (BaseAction* b: other.actionsLog) {
+
+        //Delete actionslog
+        for (BaseAction* b: actionsLog) {
             delete b;
+            b = nullptr;
         }
-        other.actionsLog.clear();
-        for (auto it = other.userMap.begin(); it != other.userMap.end(); ++it) {
+        actionsLog.clear();
+        //Delete userMap
+        for (auto it = userMap.begin(); it != userMap.end(); ++it) {
             delete it->second;
             userMap.erase(it->first);
         }
-        other.userMap.clear();
-        other.activeUser= nullptr;
+        userMap.clear();
+        // Delete contentList
+        for (Watchable* w: content){
+            delete w;
+            w = nullptr;
+        }
+        content.clear();
+        activeUser= nullptr;
+
+        // Move pointers
+        for (int i = 0; i < other.content.size(); i++){
+            content.push_back(other.content[i]);
+            other.content[i] = nullptr;
+        }
+        for (int i = 0; i < other.actionsLog.size(); i++){
+            actionsLog.push_back(other.actionsLog[i]);
+            other.actionsLog[i] = nullptr;
+        }
+        for (auto user = other.userMap.begin(); user != other.userMap.end(); ++user){
+            userMap.insert({user->first, user->second});
+            other.userMap.at(user->first) = nullptr;
+        }
+        activeUser=other.activeUser;
+        other.activeUser = nullptr;
+
+
+
+
     }
+    return *this;
 }
 
 

@@ -13,12 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f0bd4c78-b356-44a7-83d6-edd4b942b29a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Session.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Session.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/User.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/User.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Episode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Episode.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Movie.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Session.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Session.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/User.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Watchable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Watchable.cpp" afterDir="false" />
@@ -93,7 +90,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b15f80bb-93d1-44da-9adb-2fd844846a5f" name="Default Changelist" comment="" />
+      <changelist id="f0bd4c78-b356-44a7-83d6-edd4b942b29a" name="Default Changelist" comment="" />
       <created>1574164080046</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -113,6 +110,7 @@
       <workItem from="1574610129079" duration="16840000" />
       <workItem from="1574681569612" duration="23861000" />
       <workItem from="1574756243797" duration="889000" />
+      <workItem from="1574858208164" duration="7960000" />
     </task>
     <task id="LOCAL-00001" summary="try 1">
       <created>1574169569936</created>
@@ -167,8 +165,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Session.cpp</url>
-          <line>86</line>
-          <option name="timeStamp" value="164" />
+          <line>177</line>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Session.cpp</url>
+          <line>181</line>
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/include/User.h</url>
+          <line>43</line>
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>41</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Main.cpp</url>
+          <line>46</line>
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Main.cpp</url>
+          <line>45</line>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>94</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Watchable.cpp</url>
+          <line>9</line>
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>17</line>
+          <option name="timeStamp" value="185" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/User.cpp</url>
+          <line>80</line>
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

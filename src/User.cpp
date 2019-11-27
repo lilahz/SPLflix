@@ -15,9 +15,8 @@ User::User(const std::string &name):name(name) {}
 
  //Copy Constructor
 User::User(const User &other) : name(other.name) {
-     for (int i = 0; i < other.history.size(); i++){
-         Watchable* temp_watch = other.history[i] ;
-         history.push_back(temp_watch);
+     for (auto *x: other.history){
+         history.push_back(x->clone());
      }
 }
 
@@ -27,20 +26,20 @@ User &User::operator=(const User &other) {
     {
         name = other.name;
         // Delete and create new history
-        for (auto x: history) {
-          delete x;
+        for (Watchable* w: history){
+            delete w;
+            w = nullptr;
         }
         history.clear();
         for (int i = 0; i < other.history.size(); i++){
-            Watchable* temp = other.history[i];
-            history.push_back(temp);
+            history.push_back(other.history[i] -> clone());
         }
     }
 }
 
 User::~User() {
     for (auto x: history){
-       x = nullptr;
+       delete x;
     }
     history.clear();
 }
@@ -70,10 +69,26 @@ void User::updateRec(Watchable *watchable) {}
 
 //==========================================Length Recommender User=====================================================
 
+
 LengthRecommenderUser::LengthRecommenderUser(const std::string &name) : User(name) {
     totalTime=0;
     averageTime=0;
     howManyMovies=0;
+}
+
+//Copy constructor
+LengthRecommenderUser::LengthRecommenderUser(const LengthRecommenderUser& other) : User(other) {
+    totalTime = other.totalTime;
+    howManyMovies = other.howManyMovies;
+    averageTime = other.averageTime;
+}
+//Copy Assignment
+LengthRecommenderUser &LengthRecommenderUser::operator=(const LengthRecommenderUser &other) {
+    User::operator=(other);
+    totalTime = other.totalTime;
+    howManyMovies = other.howManyMovies;
+    averageTime = other.averageTime;
+
 }
 
 LengthRecommenderUser::~LengthRecommenderUser() {}
@@ -129,12 +144,28 @@ User* LengthRecommenderUser::clone(Session &s) {
 }
 
 
+
 //===========================================Rerun Recommender User=====================================================
 
 RerunRecommenderUser::RerunRecommenderUser(const std::string &name) : User(name) {
     recIndex = 0;
     histLength = 0;
 }
+
+//Copy constructor
+RerunRecommenderUser::RerunRecommenderUser(const RerunRecommenderUser& other) : User(other) {
+    recIndex = other.recIndex;
+    histLength = other.histLength;
+}
+//Copy Assignment
+RerunRecommenderUser &RerunRecommenderUser::operator=(const RerunRecommenderUser &other) {
+    User::operator=(other);
+    recIndex = other.recIndex;
+    histLength = other.histLength;
+
+}
+
+RerunRecommenderUser::~RerunRecommenderUser()  {}
 
 Watchable *RerunRecommenderUser::getRecommendation(Session &s) {
     Watchable* rec;
@@ -174,14 +205,41 @@ User *RerunRecommenderUser::clone(Session &s) {
     return temp_user;
 }
 
-RerunRecommenderUser::~RerunRecommenderUser() {
 
-}
 
 //==========================================Genre Recommender User=====================================================
 // TODO possible to make it faster by deleting and inserting back to the multimap
 // https://stackoverflow.com/questions/11343822/how-to-replace-key-value-in-a-std-multimap
 GenreRecommenderUser::GenreRecommenderUser(const std::string &name) : User(name) {}
+
+//Copy constructor
+GenreRecommenderUser::GenreRecommenderUser(const GenreRecommenderUser& other) : User(other) {
+    for (auto x : other.counterTag){
+        counterTag.insert(x);
+    }
+    for (auto x : other.tagsMap){
+        tagsMap.insert(x);
+    }
+    for (auto x : other.sortedTagsMap){
+        sortedTagsMap.insert(x);
+    }
+
+
+}
+//Copy Assignment
+GenreRecommenderUser &GenreRecommenderUser::operator=(const GenreRecommenderUser &other) {
+    User::operator=(other);
+    for (auto x : other.counterTag){
+        counterTag.insert(x);
+    }
+    for (auto x : other.tagsMap){
+        tagsMap.insert(x);
+    }
+    for (auto x : other.sortedTagsMap){
+        sortedTagsMap.insert(x);
+    }
+
+}
 
 Watchable *GenreRecommenderUser::getRecommendation(Session &s) {
     // Sorting the tags by appearance

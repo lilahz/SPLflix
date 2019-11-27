@@ -7,8 +7,7 @@ Watchable::Watchable(long id, int length, std::vector<std::string> tags) :
     id(id), length(length), tags(std::move(tags)) {}
 
 Watchable::~Watchable() {
-
-
+    tags.clear();
 }
 
 int Watchable::getLength() {
@@ -36,5 +35,6 @@ std::vector<std::string> Watchable::getTags() {
 }
 
 std::string Watchable::getSeriesName() {}
+
 
 
